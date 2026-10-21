@@ -37,7 +37,7 @@ img{max-width:100%}
 .band{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 
 /* Nav */
-.nav{position:sticky;top:0;z-index:20;background:rgba(251,251,252,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:20;background:rgba(251,251,252,.6);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;max-width:1200px;margin:0 auto;padding:12px 24px}
 .logo{display:flex;align-items:center}
 .logo img{height:46px;width:auto;display:block}
