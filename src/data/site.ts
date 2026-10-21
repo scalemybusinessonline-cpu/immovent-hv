@@ -5,7 +5,7 @@ export const site = {
   email: 'info@immovent-hv.de',
   street: 'Schützenstr. 21',
   city: '96047 Bamberg',
-  portal: 'https://www.immovent-hv.de',
+  portal: 'https://portal.immovent-hv.de/app/login',
 };
 
 export const nav = [
