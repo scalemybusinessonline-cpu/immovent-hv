@@ -18,7 +18,9 @@ const ctaHref = path === '/' ? '#anfrage' : '/kontakt';
     </nav>
     <div class="nav-cta">
       <a class="btn btn-g" href={site.portal}>Kundenportal</a>
-      {path !== '/kontakt' && <a class="btn btn-p" href={ctaHref}>Erstgespräch</a>}
+      {path !== '/kontakt'
+        ? <a class="btn btn-p" href={ctaHref}>Erstgespräch</a>
+        : <span class="btn btn-p" style="visibility:hidden" aria-hidden="true">Erstgespräch</span>}
     </div>
     <button class="burger" type="button" popovertarget="mnav" aria-label="Menü öffnen">
       <span></span><span></span><span></span>
