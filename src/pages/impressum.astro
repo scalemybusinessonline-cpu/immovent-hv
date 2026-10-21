@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Impressum | Immovent Hausverwaltung" description="Impressum der Immovent Hausverwaltung GmbH, Schützenstr. 21, 96047 Bamberg.">
+
+<section style="padding:96px 0 110px">
+  <div class="wrap legal">
+    <div class="eyebrow fade-up">Rechtliches</div>
+    <h1 class="fade-up d1 h1">Impressum</h1>
+
+    <div class="fade-up d2">
+      <p>Immovent Hausverwaltung GmbH<br>{site.street}<br>{site.city}<br>Deutschland</p>
+
+      <h2>Vertretungsberechtigte</h2>
+      <p>Leon Rauh<br>Nina Geyer</p>
+
+      <h2>Kontakt</h2>
+      <p>Tel.: <a href={site.phoneHref}>015174530871</a><br>E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+
+      <h2>Handelsregister</h2>
+      <p>HRB 12362, Amtsgericht Bamberg</p>
+
+      <h2>Steuernummer</h2>
+      <p>Steuernummer: [Steuernummer]</p>
+
+      <h2>Umsatzsteuer-ID</h2>
+      <p>USt-IdNr.: [Umsatzsteuer-ID]</p>
+
+      <h2>Berufsrechtliche Regelungen / Erlaubnis</h2>
+      <p>§ 34c GewO (Immobilienverwaltung / Makler)<br>Zuständige Erlaubnis-/Aufsichtsbehörde: Industrie- und Handelskammer für München und Oberbayern</p>
+
+      <h2>Redaktionsverantwortlich (§ 18 Abs. 2 MStV)</h2>
+      <p>Leon Rauh<br>Immovent Hausverwaltung GmbH<br>{site.street}<br>{site.city}</p>
+
+      <h2>Hinweis zur Online-Streitbeilegung</h2>
+      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br><a href="https://ec.europa.eu/consumers/odr" rel="noopener">https://ec.europa.eu/consumers/odr</a></p>
+      <p>Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.</p>
+
+      <h2>Haftungshinweis</h2>
+      <h3>Haftung für Inhalte</h3>
+      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+      <h3>Haftung für Links</h3>
+      <p>Unser Angebot enthält ggf. Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.</p>
+      <h3>Urheberrecht</h3>
+      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.</p>
+
+      <p class="muted" style="margin-top:40px;font-size:14px">Stand: Juli 2026</p>
+    </div>
+  </div>
+</section>
+
+</Base>
