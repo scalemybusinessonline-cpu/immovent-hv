@@ -4,6 +4,7 @@ import logo from '../assets/logo.png';
 import { nav, site } from '../data/site';
 
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const ctaHref = path === '/' ? '#anfrage' : '/kontakt';
 ---
 <header class="nav">
   <div class="nav-in">
@@ -15,9 +16,32 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
         <a href={l.href} class:list={{ on: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div class="nav-cta">
       <a class="btn btn-g" href={site.portal}>Kundenportal</a>
-      {path !== '/kontakt' && <a class="btn btn-p" href={path === '/' ? '#anfrage' : '/kontakt'}>Erstgespräch</a>}
+      {path !== '/kontakt' && <a class="btn btn-p" href={ctaHref}>Erstgespräch</a>}
+    </div>
+    <button class="burger" type="button" popovertarget="mnav" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="mnav" popover>
+      <nav class="mlinks" aria-label="Mobile Navigation">
+        {nav.map((l) => (
+          <a href={l.href} class:list={{ on: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+        ))}
+      </nav>
+      <div class="stack" style="gap:10px">
+        {path !== '/kontakt' && <a class="btn btn-p" href={ctaHref}>Erstgespräch vereinbaren</a>}
+        <a class="btn btn-g" href={site.portal}>Kundenportal</a>
+        <a class="mphone" href={site.phoneHref}>{site.phone}</a>
+      </div>
     </div>
   </div>
 </header>
+
+<script>
+  // Menü schließen, wenn ein Anker auf derselben Seite angeklickt wird (z. B. #anfrage)
+  const m = document.getElementById('mnav');
+  m?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) m.hidePopover();
+  });
+</script>
