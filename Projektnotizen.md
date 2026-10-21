@@ -14,7 +14,7 @@ Statische Astro-Site (Astro 7), umgesetzt aus Claude-Design-Export `~/Downloads/
 - [ ] Formular-Backend (aktuell `method="post"` ohne `action`)
 - [ ] Impressum + Datenschutz (Links stehen auf `#`)
 - [ ] Platzhalter füllen: Teamfotos, Leon Rauh Funktion, Team-Kurztexte, FAQ-Mindestgrößen (WEG + Miet)
-- [x] Objektzahl vereinheitlicht: 150+ (Entscheidung Matthew, 21.10.2026)
+- [x] Kennzahl vereinheitlicht: 150+ betreute Einheiten (Entscheidung Matthew, 21.10.2026)
 - [ ] Hosting/Deploy, OG-Image, Sitemap
 
 ## Dateien
