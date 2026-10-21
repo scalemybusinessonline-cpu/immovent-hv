@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { nav, site } from '../data/site';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="nav">
+  <div class="nav-in">
+    <a class="logo" href="/" aria-label="Immovent Startseite">
+      <Image src={logo} alt={site.name} height={46} densities={[1, 2]} loading="eager" fetchpriority="high" />
+    </a>
+    <nav class="links" aria-label="Hauptnavigation">
+      {nav.map((l) => (
+        <a href={l.href} class:list={{ on: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+      ))}
+    </nav>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn btn-g" href={site.portal}>Kundenportal</a>
+      {path !== '/kontakt' && <a class="btn btn-p" href={path === '/' ? '#anfrage' : '/kontakt'}>Erstgespräch</a>}
+    </div>
+  </div>
+</header>

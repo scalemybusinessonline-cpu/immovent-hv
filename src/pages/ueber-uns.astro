@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const team = [
+  { name: 'Nina Geyer', role: 'Geschäftsführerin', text: '[Kurzer Satz zu Schwerpunkt und Erfahrung]' },
+  { name: 'Leon Rauh', role: '[Funktion]', text: '[Kurzer Satz zu Schwerpunkt und Erfahrung]' },
+];
+
+const stats = [['30+', 'betreute Objekte'], ['50 km', 'Einzugsgebiet rund um Bamberg'], ['24 h', 'Rückmeldung auf jede Anfrage']];
+---
+<Base title="Über uns – Hausverwaltung aus Bamberg | Immovent" description="Immovent macht Hausverwaltung anders: digital und effizient in den Prozessen, transparent in der Kommunikation, persönlich in der Betreuung – in Bamberg und 50 km Umkreis.">
+
+<section style="padding:96px 0 72px">
+  <div class="wrap stack" style="gap:24px;max-width:960px">
+    <div class="eyebrow fade-up">Über uns</div>
+    <h1 class="fade-up d1" style="font-size:clamp(40px,5.6vw,70px);line-height:1.03">Hausverwaltung, wie wir sie selbst gerne hätten.</h1>
+    <p class="fade-up d2 muted" style="font-size:20px;line-height:1.6;max-width:720px">Immovent entstand aus einer einfachen Beobachtung: Viele Eigentümer sind unzufrieden mit ihrer Hausverwaltung – schlechte Erreichbarkeit, intransparente Prozesse, kein digitaler Zugang. Wir machen es anders.</p>
+  </div>
+</section>
+
+<section style="padding:0 0 100px">
+  <div class="wrap">
+    <div class="ph fade-up d3" style="border-radius:28px;height:440px">[Teamfoto oder Bild aus Bamberg]</div>
+  </div>
+</section>
+
+<section style="padding:0 0 100px">
+  <div class="wrap grid2" style="gap:64px;align-items:start">
+    <div class="sr stack" style="gap:16px">
+      <div class="eyebrow">Unsere Haltung</div>
+      <h2 class="h2">Persönlich, professionell und lösungsorientiert.</h2>
+    </div>
+    <div class="sr stack muted" style="gap:20px;font-size:18px;line-height:1.7">
+      <p>Wir haben Immovent gegründet, weil wir Hausverwaltung anders gestalten möchten: digital und effizient in den Prozessen, transparent in der Kommunikation und persönlich in der Betreuung.</p>
+      <p>Für Eigentümer und Eigentümergemeinschaften, die eine Verwaltung auf Augenhöhe suchen – in Bamberg und rund 50 km Umkreis.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band" style="padding:90px 0">
+  <div class="wrap">
+    <div class="sr stack" style="gap:16px;max-width:720px;margin-bottom:48px">
+      <div class="eyebrow">Ihre Ansprechpartner</div>
+      <h2 class="h2">Menschen statt Hotline.</h2>
+    </div>
+    <div class="grid2">
+      {team.map((m) => (
+        <div class="card hov sr" style="padding:16px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+          <div class="ph" style="width:160px;height:180px;border-radius:14px;flex:none">[Foto]</div>
+          <div class="stack" style="gap:8px;padding:8px;flex:1 1 200px"><h3 style="font-size:24px">{m.name}</h3><div class="eyebrow" style="font-size:12px">{m.role}</div><p class="muted" style="font-size:15px;line-height:1.6">{m.text}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section style="padding:100px 0">
+  <div class="wrap grid3">
+    {stats.map(([n, l]) => (
+      <div class="sr stack" style="gap:10px;padding:8px 0;border-top:2px solid #1E1E1E"><div style="font-size:44px;font-weight:700;letter-spacing:-.04em;padding-top:16px">{n}</div><div class="muted" style="font-size:16px">{l}</div></div>
+    ))}
+  </div>
+</section>
+
+<CtaBanner title="Lernen Sie uns kennen." text="Vereinbaren Sie ein unverbindliches Erstgespräch – wir nehmen uns Zeit für Ihr Objekt und Ihre Fragen." />
+
+</Base>

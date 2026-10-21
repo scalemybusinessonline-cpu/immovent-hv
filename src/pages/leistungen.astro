@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Arrow from '../components/Arrow.astro';
+import SectionHead from '../components/SectionHead.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+
+const rows = [
+  ['Auftraggeber', 'Die Eigentümergemeinschaft', 'Der einzelne Eigentümer bzw. Vermieter'],
+  ['Gegenstand', 'Gemeinschaftseigentum: Dach, Fassade, Treppenhaus, Technik', 'Ihre vermieteten Einheiten und das Mietverhältnis'],
+  ['Abrechnung', 'Wirtschaftsplan & Jahresabrechnung', 'Betriebskostenabrechnung für Mieter'],
+  ['Typischer Fall', 'Wohnanlage mit mehreren Eigentümern', 'Mehrfamilienhaus oder Anlagewohnungen'],
+];
+
+const usps = [
+  { t: 'Persönlicher Ansprechpartner', d: 'Sie erreichen immer dieselbe Person.', icon: '<circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' },
+  { t: 'Lokale Expertise', d: 'Verwaltungserfahrung in Bamberg und der Region.', icon: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>' },
+  { t: 'Digital & transparent', d: 'Kundenportal, klare Kommunikation, voller Überblick.', icon: '<rect x="3" y="4" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' },
+];
+---
+<Base title="Leistungen: WEG- & Mietverwaltung in Bamberg | Immovent" description="Unsere Leistungen für Eigentümer in Bamberg: WEG-Verwaltung für Eigentümergemeinschaften und Mietverwaltung für Vermieter – persönlich, professionell, lösungsorientiert.">
+
+<section style="padding:96px 0 56px;text-align:center">
+  <div class="wrap stack" style="align-items:center;gap:22px">
+    <div class="eyebrow fade-up">Leistungen</div>
+    <h1 class="fade-up d1 h1" style="max-width:860px">Unsere Leistungen für Eigentümer in Bamberg</h1>
+    <p class="fade-up d2 muted lead" style="max-width:640px">Zwei Verwaltungsarten, ein Standard: persönlich, professionell und lösungsorientiert.</p>
+  </div>
+</section>
+
+<section style="padding:0 0 100px">
+  <div class="wrap grid2">
+    <a class="card hov blue fade-up d2 stack" href="/weg-verwaltung" style="padding:44px;text-decoration:none;gap:18px;min-height:360px">
+      <span class="eyebrow">Für Eigentümergemeinschaften</span>
+      <h2 style="font-size:38px">WEG-Verwaltung</h2>
+      <p style="font-size:17px;line-height:1.6">Kaufmännische und technische Verwaltung des Gemeinschaftseigentums, Eigentümerversammlungen und Beschlussumsetzung nach WEG.</p>
+      <span style="margin-top:auto;font-weight:600;display:inline-flex;gap:8px;align-items:center">Zur WEG-Verwaltung <Arrow /></span>
+    </a>
+    <a class="card hov fade-up d3 stack" href="/mietverwaltung" style="padding:44px;text-decoration:none;color:#1E1E1E;gap:18px;min-height:360px">
+      <span class="eyebrow">Für Vermieter &amp; Investoren</span>
+      <h2 style="font-size:38px">Mietverwaltung</h2>
+      <p class="muted" style="font-size:17px;line-height:1.6">Mieterbetreuung, Neuvermietung, Mietbuchhaltung, Betriebskostenabrechnung und Handwerkerkoordination für Ihre Mietobjekte.</p>
+      <span style="margin-top:auto;font-weight:600;color:#2563C9;display:inline-flex;gap:8px;align-items:center">Zur Mietverwaltung <Arrow /></span>
+    </a>
+  </div>
+</section>
+
+<section class="band" style="padding:90px 0">
+  <div class="wrap">
+    <SectionHead mb={40} eyebrow="Orientierung" title="Welche Verwaltung brauche ich?" />
+    <div class="sr" style="overflow-x:auto;border:1px solid #E6E8EE;border-radius:20px">
+      <table>
+        <thead><tr><th scope="col"><span class="sr-only">Merkmal</span></th><th scope="col">WEG-Verwaltung</th><th scope="col">Mietverwaltung</th></tr></thead>
+        <tbody>
+          {rows.map(([k, a, b]) => <tr><td>{k}</td><td>{a}</td><td>{b}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding:100px 0">
+  <div class="wrap">
+    <SectionHead eyebrow="Immer inklusive" title="Was jede Verwaltung bei uns ausmacht" />
+    <div class="grid3">
+      {usps.map((u) => (
+        <div class="card hov sr stack" style="padding:30px;gap:12px">
+          <div class="tile" style="width:44px;height:44px;border-radius:12px"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" set:html={u.icon} /></div>
+          <h3 style="font-size:20px">{u.t}</h3>
+          <p class="muted" style="font-size:15px;line-height:1.6">{u.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBanner title="Unsicher, welche Verwaltung passt?" text="Im Erstgespräch klären wir das gemeinsam – unverbindlich." />
+
+</Base>

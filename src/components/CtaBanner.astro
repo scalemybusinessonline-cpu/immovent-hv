@@ -1,0 +1,16 @@
+---
+interface Props { title: string; text: string; ring?: boolean }
+const { title, text, ring } = Astro.props;
+---
+<section style="padding:0 0 110px">
+  <div class="wrap">
+    <div class="sr blue" style="border-radius:28px;padding:64px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap;position:relative;overflow:hidden">
+      {ring && <div class="ring" aria-hidden="true" style="right:-60px;top:-60px;width:260px;height:260px"></div>}
+      <div class="stack" style="gap:12px;max-width:620px;position:relative">
+        <h2 class="h2-cta">{title}</h2>
+        <p style="font-size:17px;line-height:1.6">{text}</p>
+      </div>
+      <a class="btn btn-w" href="/kontakt" style="position:relative">Erstgespräch vereinbaren</a>
+    </div>
+  </div>
+</section>

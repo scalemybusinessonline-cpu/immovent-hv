@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import logoWhite from '../assets/logo-white.png';
+import { site } from '../data/site';
+---
+<footer class="foot">
+  <div class="wrap stack" style="gap:48px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px">
+      <div class="stack span2" style="gap:14px">
+        <Image src={logoWhite} alt={site.name} height={67} densities={[1, 2]} style="align-self:flex-start" />
+        <p style="font-size:15px;line-height:1.6;max-width:340px">WEG- und Mietverwaltung für Eigentümer und Investoren in Bamberg und Umgebung.</p>
+      </div>
+      <div class="foot-col"><strong>Leistungen</strong><a href="/weg-verwaltung">WEG-Verwaltung</a><a href="/mietverwaltung">Mietverwaltung</a><a href="/leistungen">Alle Leistungen</a></div>
+      <div class="foot-col"><strong>Unternehmen</strong><a href="/ueber-uns">Über uns</a><a href="/kontakt">Kontakt</a><a href={site.portal}>Kundenportal</a></div>
+      <div class="foot-col"><strong>Kontakt</strong><a href={site.phoneHref}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a><span>{site.street}<br>{site.city}</span></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.4);padding-top:24px;font-size:14px">
+      <span>© {new Date().getFullYear()} Immovent Hausverwaltung GmbH</span>
+      <div style="display:flex;gap:20px"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+    </div>
+  </div>
+</footer>

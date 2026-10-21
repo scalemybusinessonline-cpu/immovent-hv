@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import Check from '../components/Check.astro';
+import SectionHead from '../components/SectionHead.astro';
+import Faq from '../components/Faq.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Roof from '../components/Roof.astro';
+
+const facts = [
+  ['§ 28 WEG', 'Wirtschaftsplan & Jahresabrechnung'],
+  ['§ 24 WEG', 'Versammlung & Beschluss-Sammlung'],
+  ['§ 19 WEG', 'Ordnungsmäßige Erhaltung'],
+  ['Portal', 'Alle Unterlagen digital für jeden Eigentümer'],
+];
+
+const tabs = [
+  { tab: 'Kaufmännisch', h: 'Kaufmännische Verwaltung', p: 'Saubere Zahlen sind die Grundlage für gute Entscheidungen in der Gemeinschaft.',
+    items: ['Wirtschaftsplan mit Hausgeld-Vorschüssen', 'Jahresabrechnung & Vermögensbericht', 'Hausgeldverwaltung & Mahnwesen', 'Verwaltung der Erhaltungsrücklage', 'Getrennte Konten je Gemeinschaft', 'Versicherungen & Dienstleisterverträge'] },
+  { tab: 'Versammlung & Beschlüsse', h: 'Versammlung & Beschlüsse', p: 'Gut vorbereitete Versammlungen, klare Protokolle und Beschlüsse, die auch umgesetzt werden.',
+    items: ['Einladung & Tagesordnung', 'Durchführung vor Ort oder hybrid', 'Protokoll & Beschluss-Sammlung', 'Umsetzung gefasster Beschlüsse', 'Abstimmung mit dem Verwaltungsbeirat', 'Umlaufbeschlüsse in Textform'] },
+  { tab: 'Technisch', h: 'Technische Verwaltung', p: 'Werterhalt durch vorausschauende Planung statt teurer Notfallreparaturen.',
+    items: ['Regelmäßige Objektbegehungen', 'Erhaltungsplanung für das Gemeinschaftseigentum', 'Einholung & Vergleich von Angeboten', 'Handwerkerkoordination & Abnahme', 'Wartungsverträge & Prüfpflichten', 'Schadensmanagement mit Versicherern'] },
+  { tab: 'Kommunikation', h: 'Kommunikation', p: 'Jeder Eigentümer weiß, was in seiner Anlage passiert – ohne nachfragen zu müssen.',
+    items: ['Fester Ansprechpartner für die Anlage', 'Digitales Kundenportal mit allen Unterlagen', 'Rückmeldung innerhalb von 24 Stunden', 'Notfall-Erreichbarkeit rund um die Uhr'] },
+];
+
+const steps = [
+  ['Kennenlernen', 'Gespräch mit Beirat oder Eigentümern, Besichtigung und Angebot.'],
+  ['Beschluss', 'Abberufung und Neubestellung in der Eigentümerversammlung – wir bereiten die Beschlussvorlage vor.'],
+  ['Übergabe', 'Unterlagen, Konten, Beschluss-Sammlung und Verträge übernehmen wir von der Vorverwaltung.'],
+  ['Start', 'Portalzugang für alle Eigentümer und ein fester Ansprechpartner ab Tag eins.'],
+];
+
+const faq = [
+  { q: 'Ab wie vielen Einheiten verwalten Sie eine WEG?', a: '[Mindestgröße ergänzen] – sprechen Sie uns gerne auch bei kleineren Gemeinschaften an.' },
+  { q: 'Wie schnell kann der Wechsel erfolgen?', a: 'Der Verwalter kann jederzeit abberufen werden, sein Vertrag endet spätestens sechs Monate danach. Ist der Beschluss gefasst, organisieren wir die Übergabe direkt mit der Vorverwaltung.' },
+  { q: 'Bieten Sie hybride Eigentümerversammlungen an?', a: 'Ja. Beschließt die Gemeinschaft die Online-Teilnahme, können Eigentümer auch digital teilnehmen und abstimmen.' },
+  { q: 'Verwalten Sie auch Sondereigentum einzelner Eigentümer?', a: 'Für vermietete Wohnungen bieten wir unsere <a href="/mietverwaltung">Mietverwaltung</a> an – auf Wunsch abgestimmt mit der WEG-Verwaltung aus einer Hand.' },
+];
+---
+<Base title="WEG-Verwaltung Bamberg – Verwalterwechsel leicht gemacht | Immovent" description="WEG-Verwaltung in Bamberg und Umgebung: Wirtschaftsplan, Jahresabrechnung, Eigentümerversammlung und Erhaltung – erreichbar, zügig, nachvollziehbar.">
+
+<section class="blue" style="position:relative;overflow:hidden;padding:96px 0 88px">
+  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 60% 70% at 80% 30%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 60% 70% at 80% 30%,#000 20%,transparent 75%)"></div>
+  <Roof color="#FFFFFF" opacity={0.35} />
+  <div class="wrap grid2" style="position:relative;gap:56px;align-items:center">
+    <div class="stack" style="gap:26px">
+      <nav class="fade-up" aria-label="Breadcrumb" style="display:flex;gap:8px;align-items:center;font-size:14px"><a href="/" style="color:#fff;text-decoration:none">Start</a><span aria-hidden="true">/</span><span>WEG-Verwaltung</span></nav>
+      <h1 class="fade-up d1 h1">WEG-Verwaltung in Bamberg und Umgebung</h1>
+      <p class="fade-up d2 lead" style="max-width:540px">Für Eigentümergemeinschaften, die eine Verwaltung erwarten, die erreichbar ist, Beschlüsse zügig umsetzt und Zahlen nachvollziehbar macht.</p>
+      <div class="fade-up d3" style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-w" href="/kontakt">Angebot für Ihre WEG anfragen</a>
+        <a class="btn btn-o" href="#wechsel">So läuft der Wechsel</a>
+      </div>
+    </div>
+    <div class="fade-up d3" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+      {facts.map(([k, v]) => (
+        <div style="padding:24px;border:1px solid rgba(255,255,255,.4);border-radius:18px;background:rgba(255,255,255,.03)">
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.06em">{k}</div>
+          <div style="font-size:18px;font-weight:600;margin-top:10px;line-height:1.35">{v}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section style="padding:110px 0 90px">
+  <div class="wrap">
+    <SectionHead mb={40} eyebrow="Leistungsumfang" title="Was wir für Ihre Gemeinschaft übernehmen" />
+    <div class="tabs" role="tablist" aria-label="Leistungsbereiche">
+      {tabs.map((t, i) => (
+        <button class="tab" type="button" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.tab}</button>
+      ))}
+    </div>
+    {tabs.map((t, i) => (
+      <div class="card" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} hidden={i !== 0} style="padding:40px;display:flex;flex-wrap:wrap;gap:40px">
+        <div class="stack" style="flex:1 1 300px;gap:14px"><h3 style="font-size:28px">{t.h}</h3><p class="muted" style="font-size:16px;line-height:1.6">{t.p}</p></div>
+        <div style="flex:2 1 420px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px 28px">
+          {t.items.map((it) => <Check>{it}</Check>)}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section id="wechsel" class="band" style="padding:90px 0">
+  <div class="wrap">
+    <SectionHead mb={56} eyebrow="Verwalterwechsel" title="Wechseln ist einfacher, als viele denken." lead="Seit der WEG-Reform 2020 kann eine Gemeinschaft ihren Verwalter jederzeit abberufen. Den Ablauf übernehmen wir." />
+    <div style="position:relative">
+      <div aria-hidden="true" style="position:absolute;left:0;right:0;top:23px;height:2px;background:linear-gradient(90deg,#5797F5,#E4E5E9)"></div>
+      <ol class="grid4" style="position:relative;list-style:none;margin:0;padding:0">
+        {steps.map(([t, d], i) => (
+          <li class="sr stack" style="gap:14px">
+            <div style={`width:48px;height:48px;border-radius:50%;background:${i === 3 ? '#2563C9' : '#5797F5'};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 0 0 6px #fff`}>{i + 1}</div>
+            <div style="font-size:20px;font-weight:700;letter-spacing:-.02em">{t}</div>
+            <p class="muted" style="font-size:15px;line-height:1.6">{d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section style="padding:110px 0">
+  <div class="wrap grid2" style="gap:64px;align-items:start">
+    <div class="sr stack" style="gap:16px">
+      <div class="eyebrow">FAQ WEG-Verwaltung</div>
+      <h2 class="h2">Häufige Fragen von Eigentümergemeinschaften</h2>
+    </div>
+    <Faq name="faq-weg" items={faq} />
+  </div>
+</section>
+
+<CtaBanner ring title="Unzufrieden mit Ihrer aktuellen WEG-Verwaltung?" text="Sprechen Sie mit uns – wir zeigen Ihnen, wie der Wechsel für Ihre Gemeinschaft abläuft." />
+
+</Base>
+
+<script>
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+  const select = (t: HTMLButtonElement) => {
+    for (const x of tabs) {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on));
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on;
+    }
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      select(n);
+      n.focus();
+    });
+  });
+</script>
