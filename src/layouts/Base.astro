@@ -3,8 +3,8 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
+interface Props { title: string; description: string; noindex?: boolean }
+const { title, description, noindex } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -15,6 +15,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
+  {noindex && <meta name="robots" content="noindex">}
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <meta property="og:title" content={title}>
@@ -29,5 +30,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <Nav />
   <main><slot /></main>
   <Footer />
+  <script>
+    // Noch kein Formular-Backend: nach der Browser-Validierung direkt zur Danke-Seite
+    document.querySelectorAll<HTMLFormElement>('form[action="/danke-seite"]').forEach((f) =>
+      f.addEventListener('submit', (e) => {
+        e.preventDefault();
+        location.href = f.getAttribute('action')!;
+      })
+    );
+  </script>
 </body>
 </html>
