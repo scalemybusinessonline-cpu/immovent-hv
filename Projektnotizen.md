@@ -21,5 +21,8 @@ Statische Astro-Site (Astro 7), umgesetzt aus Claude-Design-Export `~/Downloads/
 - `src/pages/*` – Seiten · `src/components/*` – Nav, Footer, Faq, CtaBanner, SectionHead, Check, Arrow, Roof
 - `src/styles/global.css` – Design-Tokens & alle Styles · `src/data/site.ts` – Kontaktdaten & Navigation
 
+## Repo
+https://github.com/scalemybusinessonline-cpu/immovent-hv (privat, Branch `main`)
+
 ## Befehle
 `npm run dev` · `npm run build` · `npm run preview`
