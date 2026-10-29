@@ -13,6 +13,7 @@ const gtmId = site.gtmId;
     ad_personalization: 'denied',
     analytics_storage: 'denied',
     functionality_storage: 'granted',
+    personalization_storage: 'granted',
     security_storage: 'granted',
   });
   gtag('set', 'ads_data_redaction', true);
@@ -35,6 +36,9 @@ const gtmId = site.gtmId;
       ad_storage: s(c.marketing),
       ad_user_data: s(c.marketing),
       ad_personalization: s(c.marketing),
+      functionality_storage: 'granted',
+      personalization_storage: 'granted',
+      security_storage: 'granted',
     });
     gtag('set', 'ads_data_redaction', !c.marketing);
     dataLayer.push({ event: 'consent_update', consent_stats: c.stats, consent_marketing: c.marketing });

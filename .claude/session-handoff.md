@@ -1,8 +1,9 @@
 ---
-timestamp: 2026-10-28T10:50:43Z
+timestamp: 2026-10-29T23:16:08Z
 author: Matthew
 ---
 
+> Stand vom 28.10. gesichert unter `~/.claude/backups/session-handoff-2026-10-29-2242.md`.
 > Vorheriger Handoff (2026-10-21) gesichert unter `~/.claude/backups/session-handoff-2026-10-28-1026.md`.
 
 ## Was wurde gemacht
@@ -23,14 +24,22 @@ author: Matthew
 
 - 28.10.: Cookie-Banner mit Consent Mode v2 (Basic): `ConsentMode.astro` (Head, Defaults + GTM-Loader), `CookieBanner.astro`, Footer-Link „Cookie-Einstellungen“, Speicherung in localStorage (12 Monate), Neuladen bei Änderung nach GTM-Start
 
+- 29.10.: Startseite erneut pixelgenau mit V3 abgeglichen (identische Abschnittshöhen, nur gewollte Abweichungen: Menü-Button-Fix, Footer-Link Cookie-Einstellungen)
+- 29.10.: Alles committed und auf `main` gepusht: `5b05ef3` „Redesign V3 umgesetzt + Cookie-Banner mit Consent Mode v2“
+- 29.10.: Consent Mode: `personalization_storage` default `granted`; Update setzt `functionality_storage`, `personalization_storage`, `security_storage` immer auf `granted` (`ConsentMode.astro`), per Playwright geprüft, gepusht
+
 ## Aktueller Status
 - Dev-Server läuft im Hintergrund (Astro 7 daemonisiert): `astro dev stop` / `astro dev status` / `astro dev logs`
 - Build ok (10 Seiten); Texte 1:1 mit V3 abgeglichen; Funnel, Kontaktformular, Tabs, FAQ, Mobile-Menü per Playwright getestet, keine Konsolenfehler
-- Kein Deploy vorhanden
+- `main` = `origin/main` (`5b05ef3`), Working Tree sauber
+- Deploy: ungeprüft, ob das Repo mit Vercel verbunden ist; wenn ja, ist V3 live (mit leerem GTM + Wix-Markierung im Datenschutz)
 
 ## Nächste Schritte
+- [x] Consent-Änderung committen + pushen
+- [ ] Nach „Alle akzeptieren“ geht jetzt `ad.doubleclick.net/ccm/s/collect` raus: GTM-Container prüfen, welcher Tag das ist (am 28.10. war er leer)
 - [ ] GTM-Container `GTM-N2XXWC92` ist leer → Tags anlegen (GA4, ggf. Ads/Meta mit Consent-Prüfung), dann Ablehnen/Akzeptieren erneut mit Netzwerk-Mitschnitt prüfen
-- [ ] V3-Umbau im Browser abnehmen und committen
+- [x] V3-Umbau committen + pushen (`5b05ef3`)
+- [ ] Prüfen, ob `main` automatisch deployt wird (Vercel/anderer Host), sonst Deploy aufsetzen
 - [ ] Datenschutz: Wix-Hosting-Abschnitt ersetzen (markiert); GA/Ads/GTM/Meta-Pixel/Maps/Consent-Abschnitte mit Kunde klären, Site bindet nichts davon ein
 - [ ] `/angebot`: noindex? Verlinkung? (im Design nirgends verlinkt)
 - [ ] Vercel-Projekt aus dem GitHub-Repo anlegen (Auto-Deploy `main`, Preview pro Branch)
