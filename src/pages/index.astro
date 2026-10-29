@@ -1,216 +1,155 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Check from '../components/Check.astro';
-import Arrow from '../components/Arrow.astro';
-import SectionHead from '../components/SectionHead.astro';
-import Faq from '../components/Faq.astro';
-import Roof from '../components/Roof.astro';
-import { site } from '../data/site';
-
-const cities = ['Bamberg', 'Forchheim', 'Bayreuth', 'Coburg', 'Haßfurt', 'Erlangen', 'Höchstadt', 'Hallstadt'];
-
-const portal = [
-  { t: 'Jahresabrechnung & Vermögensbericht', s: 'Zum Download bereitgestellt', chip: 'ok', l: 'Bereit' },
-  { t: 'Eigentümerversammlung', s: 'Einladung & Tagesordnung versendet', chip: 'new', l: 'Geplant' },
-  { t: 'Sanierung Treppenhaus', s: '3 Angebote eingeholt · Vergabe in Prüfung', chip: 'wip', l: 'In Arbeit' },
-];
-
-const steps = [
-  ['Erstgespräch', 'Wir lernen Ihr Objekt und Ihre Anforderungen kennen – unverbindlich.'],
-  ['Objektprüfung & Angebot', 'Besichtigung vor Ort und ein transparentes Angebot ohne versteckte Positionen.'],
-  ['Übergabe', 'Wir übernehmen Unterlagen, Konten und Verträge direkt von der Vorverwaltung.'],
-  ['Laufende Betreuung', 'Fester Ansprechpartner, digitales Portal, regelmäßige Updates.'],
-];
-
-const faq = [
-  { q: 'Wie läuft ein Verwalterwechsel bei einer WEG ab?', a: 'Die Eigentümer beschließen in einer Versammlung die Bestellung von Immovent. Seit der WEG-Reform kann der bisherige Verwalter jederzeit abberufen werden; sein Vertrag endet spätestens sechs Monate danach. Vorbereitung des Beschlusses und Übergabe organisieren wir.' },
-  { q: 'Was kostet die Verwaltung?', a: 'Das Honorar richtet sich nach Objektart, Anzahl der Einheiten und Leistungsumfang. Nach dem Erstgespräch erhalten Sie ein transparentes Angebot.' },
-  { q: 'In welcher Region sind Sie tätig?', a: 'In Bamberg und rund 50 km Umkreis – unter anderem Forchheim, Bayreuth, Coburg, Haßfurt, Erlangen, Höchstadt und Hallstadt.' },
-  { q: 'Wie erreiche ich Sie im Notfall?', a: 'Für Notfälle wie Wasserschäden oder Heizungsausfall sind wir rund um die Uhr erreichbar. Alle anderen Anliegen beantworten wir innerhalb von 24 Stunden.' },
-];
+import ContactForm from '../components/ContactForm.astro';
+import mfhBalkone from '../assets/mehrfamilienhaus-balkone.webp';
+import wohnanlageGlas from '../assets/wohnanlage-glasbalkone.webp';
+import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 ---
-<Base title="Hausverwaltung Bamberg – WEG- & Mietverwaltung | Immovent" description="WEG- und Mietverwaltung in Bamberg und Umgebung: schnelle Antworten, klare Prozesse, volle Transparenz – digital organisiert, persönlich betreut.">
+<Base title="Hausverwaltung Bamberg – WEG- & Mietverwaltung | Immovent" description="WEG- und Mietverwaltung in Bamberg und Umgebung: schnelle Antworten, klare Prozesse, volle Transparenz – digital organisiert, persönlich betreut." cta="#anfrage">
 
-<section style="position:relative;overflow:hidden;padding:88px 0 72px">
-  <div class="gridbg" aria-hidden="true"></div>
-  <Roof />
-  <div class="wrap grid2" style="position:relative;align-items:center;gap:56px">
-    <div class="stack" style="gap:28px">
-      <div class="fade-up"><span class="pill"><span class="dot"></span>Hausverwaltung für Bamberg &amp; Umgebung</span></div>
-      <h1 class="fade-up d1" style="font-size:clamp(42px,6vw,72px);line-height:1.02">Hausverwaltung, die einfach funktioniert.</h1>
-      <p class="fade-up d2 muted lead" style="max-width:540px">WEG- und Mietverwaltung für Eigentümer, die schnelle Antworten, klare Prozesse und volle Transparenz erwarten – digital organisiert, persönlich betreut.</p>
-      <div class="fade-up d3" style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-p" href="#anfrage">Erstgespräch vereinbaren <Arrow /></a>
-        <a class="btn btn-g" href="/leistungen">Leistungen ansehen</a>
-      </div>
-      <div class="fade-up d4" style="display:flex;gap:28px;flex-wrap:wrap;padding-top:8px">
-        {[['150+', 'betreute Einheiten'], ['1', 'fester Ansprechpartner'], ['24 h', 'Rückmeldung auf Anfragen']].map(([n, l]) => (
-          <div><div style="font-size:28px;font-weight:700;letter-spacing:-.03em">{n}</div><div class="muted" style="font-size:14px">{l}</div></div>
-        ))}
-      </div>
-    </div>
-
-    <div class="fade-up d3" style="position:relative;padding:24px 8px 40px" aria-hidden="true">
-      <div class="card" style="box-shadow:0 40px 80px -32px rgba(20,20,20,.28);overflow:hidden">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid #EEF0F4">
-          <div style="display:flex;gap:6px">{[0, 1, 2].map(() => <span style="width:10px;height:10px;border-radius:50%;background:#E4E5E9"></span>)}</div>
-          <div style="font-size:13px;font-weight:600;color:#5A5A5A">Eigentümerportal</div>
-          <div style="width:46px"></div>
-        </div>
-        <div style="padding:22px 22px 8px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
-          <div><div class="eyebrow" style="font-size:11px">Objekt</div><div style="font-size:20px;font-weight:700;letter-spacing:-.02em;margin-top:4px">Musterstraße 12, Bamberg</div></div>
-          <span class="chip new">WEG · 14 Einheiten</span>
-        </div>
-        <div class="stack" style="padding:14px 22px 22px;gap:10px">
-          {portal.map((p) => (
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border:1px solid #EEF0F4;border-radius:14px">
-              <div><div style="font-weight:600;font-size:15px">{p.t}</div><div class="muted" style="font-size:13px;margin-top:2px">{p.s}</div></div>
-              <span class={`chip ${p.chip}`}>{p.l}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div class="card float" style="position:absolute;left:-12px;bottom:0;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 20px 40px -16px rgba(20,20,20,.25);max-width:300px">
-        <div style="flex:none;width:38px;height:38px;border-radius:50%;background:#5797F5;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px">IH</div>
-        <div><div style="font-size:14px;font-weight:600">Immovent Hausverwaltung</div><div class="muted" style="font-size:13px">Handwerker ist für Donnerstag bestätigt.</div></div>
-      </div>
-      <div class="card float2" style="position:absolute;right:-4px;top:0;padding:10px 14px;display:flex;gap:8px;align-items:center;box-shadow:0 20px 40px -16px rgba(20,20,20,.25)">
-        <svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="8" fill="#E3F5EC"/><path d="M5.5 9.2l2.3 2.3 4.7-4.8" fill="none" stroke="#11663F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span style="font-size:13px;font-weight:600">Hausgeld vollständig eingegangen</span>
-      </div>
-    </div>
-  </div>
+<section style="padding: 72px 0 96px">
+<div class="wrap split" style="align-items: center; gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div class="eyebrow">Ihre Hausverwaltung für Bamberg und Umgebung</div>
+<h1>Hausverwaltung in Bamberg, die einfach funktioniert.</h1>
+<p class="lead" style="max-width: 540px">WEG- und Mietverwaltung für Eigentümer, die verlässliche Verwaltung, schnelle Erreichbarkeit und transparente Prozesse erwarten.</p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<a class="btn btn-p" href="#anfrage">Erstgespräch vereinbaren <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<a class="btn btn-g" href="/leistungen">Leistungen ansehen</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 12px">
+<div class="stat"><div class="stat-n" style="font-size: 32px">150+</div><div class="stat-l">betreute Einheiten</div></div>
+<div class="stat"><div class="stat-n" style="font-size: 32px">2</div><div class="stat-l">feste Ansprechpartner</div></div>
+<div class="stat"><div class="stat-n" style="font-size: 32px">24 h</div><div class="stat-l">Rückmeldung an Werktagen</div></div>
+</div>
+</div>
+<div class="hero-media">
+<Image class="photo" src={wohnanlageGlas} alt="Moderne Wohnanlage mit Glasbalkonen" loading="eager" fetchpriority="high" style="height: 580px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<div class="card float-card" style="overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #EEF1F5">
+<div><div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #4F5B6B">Kundenportal · Beispielansicht</div><div style="font-weight: 600; font-size: 16px; margin-top: 2px">Musterstraße 12, Bamberg</div></div>
+<span class="chip new">WEG · 14 Einheiten</span>
+</div>
+<div style="padding: 4px 20px 8px">
+<div class="row"><span>Jahresabrechnung 2025</span><span class="chip ok">Bereit</span></div>
+<div class="row"><span>Eigentümerversammlung</span><span class="chip new">Geplant</span></div>
+<div class="row"><span>Sanierung Treppenhaus</span><span class="chip wip">In Arbeit</span></div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
-<section aria-label="Einzugsgebiet" style="border-top:1px solid #E6E8EE;border-bottom:1px solid #E6E8EE;background:#fff;padding:26px 0;overflow:hidden">
-  <div style="display:flex;align-items:center;gap:40px">
-    <div class="eyebrow" style="flex:none;padding-left:24px;color:#5A5A5A">Im Einsatz in</div>
-    <div style="overflow:hidden;flex:1;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)">
-      <div class="marq">
-        {cities.map((c) => <span>{c}</span>)}
-        {cities.map((c) => <span aria-hidden="true">{c}</span>)}
-      </div>
-    </div>
-  </div>
+<section aria-label="Einzugsgebiet" style="border-top: 1px solid #E3E7EE; border-bottom: 1px solid #E3E7EE; padding: 24px 0">
+<div class="wrap" style="display: flex; align-items: center; gap: 12px 24px">
+<span style="font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #4F5B6B; flex: none">Im Einsatz in</span>
+<div class="marq">
+<div class="marq-track">
+<div class="marq-group"><span>Bamberg</span><span>Forchheim</span><span>Bayreuth</span><span>Coburg</span><span>Haßfurt</span><span>Erlangen</span><span>Höchstadt</span><span>Hallstadt</span><span class="dup" aria-hidden="true">Bamberg</span><span class="dup" aria-hidden="true">Forchheim</span><span class="dup" aria-hidden="true">Bayreuth</span><span class="dup" aria-hidden="true">Coburg</span><span class="dup" aria-hidden="true">Haßfurt</span><span class="dup" aria-hidden="true">Erlangen</span><span class="dup" aria-hidden="true">Höchstadt</span><span class="dup" aria-hidden="true">Hallstadt</span></div>
+<div class="marq-group dup" aria-hidden="true"><span>Bamberg</span><span>Forchheim</span><span>Bayreuth</span><span>Coburg</span><span>Haßfurt</span><span>Erlangen</span><span>Höchstadt</span><span>Hallstadt</span><span>Bamberg</span><span>Forchheim</span><span>Bayreuth</span><span>Coburg</span><span>Haßfurt</span><span>Erlangen</span><span>Höchstadt</span><span>Hallstadt</span></div>
+</div>
+</div>
+</div>
 </section>
 
-<section style="padding:120px 0 40px">
-  <div class="wrap">
-    <SectionHead xl mb={56} eyebrow="Leistungen" title="Zwei Verwaltungsarten. Ein Anspruch." lead="Ob Eigentümergemeinschaft oder vermietete Wohnung – wir übernehmen die Prozesse, die Ihre Zeit kosten." />
-    <div class="grid2">
-      <a class="card hov sr blue stack" href="/weg-verwaltung" style="padding:40px;text-decoration:none;gap:24px">
-        <div style="display:flex;justify-content:space-between;align-items:center"><span class="eyebrow">Für Eigentümergemeinschaften</span><span class="chip" style="background:#fff;color:#1E1E1E">Neu</span></div>
-        <h3 style="font-size:34px">WEG-Verwaltung</h3>
-        <p style="font-size:17px;line-height:1.6">Wirtschaftsplan, Jahresabrechnung, Eigentümerversammlung und Instandhaltung – rechtssicher nach WEG und transparent für alle Eigentümer.</p>
-        <div class="stack" style="gap:10px">
-          <Check light>Wirtschaftsplan, Jahresabrechnung &amp; Vermögensbericht</Check>
-          <Check light>Eigentümerversammlungen &amp; Beschlussumsetzung</Check>
-          <Check light>Technische Betreuung &amp; Erhaltungsplanung</Check>
-        </div>
-        <span style="margin-top:auto;font-weight:600;display:inline-flex;gap:8px;align-items:center">Mehr zur WEG-Verwaltung <Arrow /></span>
-      </a>
-      <a class="card hov sr stack" href="/mietverwaltung" style="padding:40px;text-decoration:none;color:#1E1E1E;gap:24px">
-        <div><span class="eyebrow">Für Vermieter &amp; Investoren</span></div>
-        <h3 style="font-size:34px">Mietverwaltung</h3>
-        <p class="muted" style="font-size:17px;line-height:1.6">Mieterbetreuung, Neuvermietung, Betriebskostenabrechnung und Handwerkerkoordination – Ihre Immobilie läuft, ohne dass Sie im Tagesgeschäft stecken.</p>
-        <div class="stack" style="gap:10px">
-          <Check>Zentraler Ansprechpartner für Mieter &amp; Dienstleister</Check>
-          <Check>Neuvermietung inkl. Bonitätsprüfung</Check>
-          <Check>Betriebskostenabrechnung &amp; Mietbuchhaltung</Check>
-        </div>
-        <span style="margin-top:auto;font-weight:600;color:#2563C9;display:inline-flex;gap:8px;align-items:center">Mehr zur Mietverwaltung <Arrow /></span>
-      </a>
-    </div>
-  </div>
+<section class="sec">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Was wir für Sie übernehmen</div>
+<h2>WEG- und Mietverwaltung aus einer Hand.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Ob Eigentümergemeinschaft oder vermietete Wohnung: Wir übernehmen die Prozesse, die Ihre Zeit kosten.</p>
+</div>
+<div class="grid2">
+<a class="card" href="/weg-verwaltung" style="overflow: hidden; display: flex; flex-direction: column">
+<Image src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; flex: 1">
+<div class="eyebrow">Für Eigentümergemeinschaften</div>
+<div class="h3l">WEG-Verwaltung</div>
+<p class="muted">Wir führen die Geschäfte Ihrer Gemeinschaft, bereiten Entscheidungen vor und sorgen dafür, dass Beschlüsse auch umgesetzt werden. Rechtssicher nach Wohnungseigentumsgesetz und für jeden Eigentümer nachvollziehbar.</p>
+<div class="checks"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Wirtschaftsplan, Jahresabrechnung und Vermögensbericht</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Eigentümerversammlungen und Beschlussumsetzung</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Technische Betreuung und Erhaltungsplanung</span></div></div>
+<span class="link-arrow" style="margin-top: auto; padding-top: 8px">Mehr zur WEG-Verwaltung <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</a>
+<a class="card" href="/mietverwaltung" style="overflow: hidden; display: flex; flex-direction: column">
+<Image src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; flex: 1">
+<div class="eyebrow">Für Vermieter und Investoren</div>
+<div class="h3l">Mietverwaltung</div>
+<p class="muted">Wir kümmern uns um alles zwischen Ihnen und Ihren Mietern. Sie treffen die Entscheidungen, wir erledigen die Arbeit, ohne dass Sie im Tagesgeschäft eingebunden sind.<br><br><br></p>
+<div class="checks"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Zentraler Ansprechpartner für Mieter und Dienstleister</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Sorgfältige Mieterauswahl inkl. Bonitätsprüfung</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Betriebskostenabrechnung und Mietbuchhaltung</span></div></div>
+<span class="link-arrow" style="margin-top: auto; padding-top: 8px">Mehr zur Mietverwaltung <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</a>
+</div>
+</div>
 </section>
 
-<section style="padding:100px 0">
-  <div class="wrap">
-    <SectionHead xl mb={56} eyebrow="Warum Immovent" title="Hausverwaltung sollte heute einfacher sein." />
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px">
-      <div class="card hov sr stack span2" style="padding:32px;gap:16px;background:linear-gradient(180deg,#fff,#F5F6F8)">
-        <div class="tile" style="background:#5797F5;color:#fff"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8M7 9h6M7 12.5h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
-        <h3 style="font-size:24px">Digitale Prozesse</h3>
-        <p class="muted" style="font-size:16px;line-height:1.6;max-width:560px">Dokumente, Abrechnungen und Vorgänge liegen digital im Kundenportal – jederzeit abrufbar, übersichtlich und ohne Papierchaos.</p>
-      </div>
-      <div class="card hov sr stack" style="padding:32px;gap:16px">
-        <div class="tile"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-        <h3 style="font-size:24px">Direkte Erreichbarkeit</h3>
-        <p class="muted" style="font-size:16px;line-height:1.6">Sie erreichen immer dieselbe Person, die Ihr Objekt kennt.</p>
-      </div>
-      <div class="card hov sr stack" style="padding:32px;gap:16px">
-        <div class="tile"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3 style="font-size:24px">Zuverlässige Betreuung</h3>
-        <p class="muted" style="font-size:16px;line-height:1.6">Wir kennen Ihre Immobilie und handeln, bevor Probleme entstehen.</p>
-      </div>
-      <div class="card hov sr stack span2" style="padding:32px;gap:16px">
-        <div class="tile"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-        <h3 style="font-size:24px">Volle Transparenz</h3>
-        <p class="muted" style="font-size:16px;line-height:1.6;max-width:560px">Sie wissen jederzeit Bescheid über laufende Maßnahmen, anfallende Kosten und alle wichtigen Entwicklungen rund um Ihre Immobilie.</p>
-      </div>
-    </div>
-  </div>
+<section class="sec sec-alt">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Unser Anspruch</div>
+<h2>Hausverwaltung sollte heute einfacher sein.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Wir wachsen bewusst begrenzt, damit jedes Objekt die Aufmerksamkeit bekommt, die es braucht.</p>
+</div>
+<div class="grid4">
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 4h13A2.5 2.5 0 0121 6.5v9a2.5 2.5 0 01-2.5 2.5h-13A2.5 2.5 0 013 15.5v-9A2.5 2.5 0 015.5 4zM8 21h8M7 9h6M7 12.5h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Digitale Prozesse</h3><p class="muted small">Dokumente, Abrechnungen und Vorgänge sind digital erfasst und jederzeit für Sie abrufbar, übersichtlich an einem Ort.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Direkte Erreichbarkeit</h3><p class="muted small">Sie erreichen immer einen Ihrer beiden Ansprechpartner. Keine Zentrale, kein Weiterleiten.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3zM9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Zuverlässige Betreuung</h3><p class="muted small">Wir kennen Ihre Immobilie und Ihre Mieter und handeln, bevor Probleme entstehen.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7zM12 9a3 3 0 110 6 3 3 0 010-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Volle Transparenz</h3><p class="muted small">Sie wissen jederzeit über laufende Maßnahmen, anfallende Kosten und wichtige Entwicklungen Bescheid.</p></div>
+</div>
+</div>
 </section>
 
-<section class="blue" style="padding:100px 0">
-  <div class="wrap">
-    <div class="sr stack" style="gap:16px;max-width:720px;margin-bottom:56px">
-      <div class="eyebrow">Verwalterwechsel</div>
-      <h2 class="h2-xl">In vier Schritten zu Immovent.</h2>
-      <p style="font-size:18px;line-height:1.6">Den Wechsel organisieren wir – inklusive Übergabe mit Ihrer bisherigen Verwaltung.</p>
-    </div>
-    <ol class="grid4" style="list-style:none;margin:0;padding:0">
-      {steps.map(([t, d], i) => (
-        <li class="sr stack" style="padding:28px;border-radius:20px;border:1px solid rgba(255,255,255,.4);gap:14px">
-          <div style="font-family:'Geist Mono',monospace;font-size:14px">0{i + 1}</div>
-          <div style="font-size:20px;font-weight:700;letter-spacing:-.02em">{t}</div>
-          <p style="font-size:15px;line-height:1.6">{d}</p>
-        </li>
-      ))}
-    </ol>
-  </div>
+<section class="sec sec-blue">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow w">Verwalterwechsel</div>
+<h2>Hausverwaltung wechseln in vier Schritten.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Den Wechsel organisieren wir, inklusive Übergabe mit Ihrer bisherigen Verwaltung.</p>
+</div>
+<div class="steps grid4">
+<div class="step"><div class="step-n">01</div><h3>Erstgespräch</h3><p class="muted small">Wir lernen Ihr Objekt und Ihre Anforderungen in einem unverbindlichen Gespräch kennen.</p></div>
+<div class="step"><div class="step-n">02</div><h3>Objektprüfung und Angebot</h3><p class="muted small">Besichtigung vor Ort und ein transparentes Angebot ohne versteckte Positionen.</p></div>
+<div class="step"><div class="step-n">03</div><h3>Übergabe</h3><p class="muted small">Wir übernehmen Unterlagen, Konten und Verträge direkt von der Vorverwaltung.</p></div>
+<div class="step"><div class="step-n">04</div><h3>Laufende Betreuung</h3><p class="muted small">Feste Ansprechpartner, digitaler Zugang zu allen Dokumenten und regelmäßige Updates.</p></div>
+</div>
+</div>
 </section>
 
-<section style="padding:110px 0">
-  <div class="wrap grid2" style="gap:64px;align-items:start">
-    <div class="sr stack" style="gap:16px">
-      <div class="eyebrow">Häufige Fragen</div>
-      <h2 class="h2-xl">Gut zu wissen.</h2>
-      <p class="muted" style="font-size:18px;line-height:1.6">Ihre Frage ist nicht dabei? Rufen Sie uns an unter <a href={site.phoneHref}>{site.phone}</a>.</p>
-    </div>
-    <Faq name="faq-home" items={faq} />
-  </div>
+<section class="sec">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="eyebrow">FAQ</div>
+<h2>Häufige Fragen zur Hausverwaltung in Bamberg.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Ihre Frage ist nicht dabei? Rufen Sie uns an unter <a href="tel:+4915174530871">0151 74530871</a>.</p>
+</div>
+<div class="faqs">
+<details class="faq" name="faq" open><summary>Wie läuft ein Verwalterwechsel bei einer WEG ab?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Die Eigentümer beschließen in einer Versammlung die Bestellung von Immovent. Seit der WEG-Reform kann der bisherige Verwalter jederzeit abberufen werden; sein Vertrag endet spätestens sechs Monate danach. Vorbereitung des Beschlusses und Übergabe organisieren wir.</p></details>
+<details class="faq" name="faq"><summary>Was kostet die Verwaltung?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Das Honorar richtet sich nach Objektart, Anzahl der Einheiten und Leistungsumfang. Nach dem Erstgespräch erhalten Sie ein transparentes Angebot.</p></details>
+<details class="faq" name="faq"><summary>In welcher Region sind Sie tätig?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">In Bamberg und ca. 50 km Umkreis, unter anderem in Forchheim, Bayreuth, Coburg, Haßfurt, Erlangen, Höchstadt und Hallstadt.</p></details>
+<details class="faq" name="faq"><summary>Wie erreiche ich Sie im Notfall?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Für Notfälle wie Heizungsausfall oder Wasserschaden gibt es für jedes Objekt eigene Notfallnummern, in der Regel direkt beim zuständigen Fachbetrieb. Welche Nummer für Ihr Objekt gilt, erfahren Sie zu Beginn der Verwaltung. Alle anderen Anliegen beantworten wir werktags innerhalb von 24 Stunden.</p></details>
+</div>
+</div>
 </section>
 
-<section id="anfrage" style="padding:0 0 110px">
-  <div class="wrap">
-    <div class="card sr" style="overflow:hidden;display:flex;flex-wrap:wrap">
-      <div class="blue stack" style="flex:1 1 380px;padding:48px;gap:20px;position:relative;overflow:hidden">
-        <div class="ring" aria-hidden="true" style="right:-80px;bottom:-80px;width:280px;height:280px"></div>
-        <div class="ring" aria-hidden="true" style="right:-20px;bottom:-20px;width:160px;height:160px"></div>
-        <div class="eyebrow">Erstgespräch</div>
-        <h2 style="font-size:38px;line-height:1.1">Moderne Hausverwaltung beginnt mit einem Gespräch.</h2>
-        <p style="font-size:16px;line-height:1.6">Wir melden uns innerhalb von 24 Stunden – persönlich, nicht per Bot.</p>
-        <div class="stack" style="margin-top:auto;gap:10px;font-size:15px;position:relative">
-          <a href={site.phoneHref} style="color:#fff;text-decoration:none">{site.phone}</a>
-          <a href={`mailto:${site.email}`} style="color:#fff;text-decoration:none">{site.email}</a>
-        </div>
-      </div>
-      <form method="post" action="/danke-seite" style="flex:2 1 480px;padding:48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px">
-        <label class="field">Name*<input type="text" name="name" autocomplete="name" required></label>
-        <label class="field">E-Mail*<input type="email" name="email" autocomplete="email" required></label>
-        <label class="field">Telefon*<input type="tel" name="telefon" autocomplete="tel" required></label>
-        <label class="field">Art der Verwaltung*<select name="art" required><option>WEG-Verwaltung</option><option>Mietverwaltung</option><option>Noch unsicher</option></select></label>
-        <label class="field">Standort der Immobilie<input type="text" name="standort"></label>
-        <label class="field">Anzahl Einheiten*<input type="number" name="einheiten" min="1" required></label>
-        <label class="field full">Nachricht<textarea name="nachricht" rows="4"></textarea></label>
-        <div class="full" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
-          <p class="muted" style="font-size:13px;max-width:420px">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben gemäß <a href="/datenschutz">Datenschutzerklärung</a> zu.</p>
-          <button class="btn btn-p" type="submit">Gespräch anfragen</button>
-        </div>
-      </form>
-    </div>
-  </div>
+<section id="anfrage" class="sec sec-alt">
+<div class="wrap split" style="gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div class="eyebrow">Erstgespräch</div>
+<h2>Moderne Hausverwaltung beginnt mit einem Gespräch.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Füllen Sie das Formular aus, wir melden uns werktags innerhalb von 24 Stunden.</p>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 8px 0">
+<a href="tel:+4915174530871" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: #16202E; font-weight: 600"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>0151 74530871</a>
+<a href="mailto:info@immovent-hv.de" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: #16202E; font-weight: 600"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 014.5 5h15A1.5 1.5 0 0121 6.5v11a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5zM3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>info@immovent-hv.de</a>
+</div>
+<Image class="photo" src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="height: 320px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+</div>
+<div class="card" style="padding: 40px">
+<h3 style="font-size: 24px; margin-bottom: 28px">Erstgespräch anfragen</h3>
+<ContactForm />
+</div>
+</div>
 </section>
 
 </Base>

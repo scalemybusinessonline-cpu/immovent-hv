@@ -4,19 +4,18 @@ import logoWhite from '../assets/logo-white.png';
 import { site } from '../data/site';
 ---
 <footer class="foot">
-  <div class="wrap stack" style="gap:48px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:32px">
-      <div class="stack span2" style="gap:14px">
-        <Image src={logoWhite} alt={site.name} height={67} densities={[1, 2]} style="align-self:flex-start" />
-        <p style="font-size:15px;line-height:1.6;max-width:340px">WEG- und Mietverwaltung für Eigentümer und Investoren in Bamberg und Umgebung.</p>
+  <div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
+    <div class="ftop">
+      <Image src={logoWhite} alt={site.name} width={210} densities={[1, 2]} style="display: block; width: 210px; height: 86px; object-fit: contain; object-position: left center" />
+      <div class="fcols">
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Leistungen</div><a href="/weg-verwaltung">WEG-Verwaltung</a><a href="/mietverwaltung">Mietverwaltung</a><a href="/leistungen">Alle Leistungen</a></div>
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Unternehmen</div><a href="/ueber-uns">Über uns</a><a href="/kontakt">Kontakt</a><a href={site.portal}>Kundenportal</a></div>
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Kontakt</div><a href={site.phoneHref}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a><span>{site.street}<br>{site.city}</span></div>
       </div>
-      <div class="foot-col"><strong>Leistungen</strong><a href="/weg-verwaltung">WEG-Verwaltung</a><a href="/mietverwaltung">Mietverwaltung</a><a href="/leistungen">Alle Leistungen</a></div>
-      <div class="foot-col"><strong>Unternehmen</strong><a href="/ueber-uns">Über uns</a><a href="/kontakt">Kontakt</a><a href={site.portal}>Kundenportal</a></div>
-      <div class="foot-col"><strong>Kontakt</strong><a href={site.phoneHref}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a><span>{site.street}<br>{site.city}</span></div>
     </div>
-    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.4);padding-top:24px;font-size:14px">
+    <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.45); padding-top: 24px; font-size: 14px">
       <span>© {new Date().getFullYear()} Immovent Hausverwaltung GmbH</span>
-      <div style="display:flex;gap:20px"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div>
+      <div style="display: flex; gap: 24px"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><button type="button" class="cb-link" data-cookie-settings>Cookie-Einstellungen</button></div>
     </div>
   </div>
 </footer>

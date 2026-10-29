@@ -1,0 +1,15 @@
+<form class="form" method="post" action="/danke-seite" aria-label="Erstgespräch anfragen">
+  <label class="field"><span class="lbl">Vorname</span><input type="text" name="vorname" autocomplete="given-name"></label>
+  <label class="field"><span class="lbl">Nachname <span class="req" aria-hidden="true">*</span></span><input type="text" name="nachname" autocomplete="family-name" required></label>
+  <label class="field"><span class="lbl">E-Mail-Adresse <span class="req" aria-hidden="true">*</span></span><input type="email" name="email" autocomplete="email" required></label>
+  <label class="field"><span class="lbl">Telefonnummer <span class="req" aria-hidden="true">*</span></span><input type="tel" name="telefon" autocomplete="tel" required></label>
+  <label class="field"><span class="lbl">Art der Verwaltung <span class="req" aria-hidden="true">*</span></span><span class="sel"><select name="art" required><option>WEG-Verwaltung</option><option>Mietverwaltung</option><option>Noch unsicher</option></select><svg class="sel-ic" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></label>
+  <label class="field"><span class="lbl">Anzahl Einheiten <span class="req" aria-hidden="true">*</span></span><input type="text" name="einheiten" inputmode="numeric" placeholder="z. B. 8" required></label>
+  <label class="field full"><span class="lbl">Standort der Immobilie <span class="req" aria-hidden="true">*</span></span><input type="text" name="standort" placeholder="z. B. 96047 Bamberg" autocomplete="postal-code" required></label>
+  <label class="field full"><span class="lbl">Nachricht <span class="req" aria-hidden="true">*</span></span><textarea name="nachricht" rows="4" placeholder="z. B. Baujahr, aktuelle Verwaltung, gewünschter Starttermin" required></textarea></label>
+  <label class="consent full"><input type="checkbox" name="datenschutz" required><span>Ich stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage gemäß <a href="/datenschutz">Datenschutzerklärung</a> zu. <span class="req" aria-hidden="true">*</span></span></label>
+  <div class="full form-foot">
+    <button class="btn btn-p" type="submit">Erstgespräch anfragen <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+    <span class="hint">* Pflichtfeld · Rückmeldung werktags innerhalb von 24 Stunden</span>
+  </div>
+</form>

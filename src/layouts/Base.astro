@@ -1,10 +1,15 @@
 ---
 import '../styles/global.css';
+import { Image } from 'astro:assets';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import ConsentMode from '../components/ConsentMode.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+import logo from '../assets/logo.png';
+import { site } from '../data/site';
 
-interface Props { title: string; description: string; noindex?: boolean }
-const { title, description, noindex } = Astro.props;
+interface Props { title: string; description: string; noindex?: boolean; cta?: string; landing?: boolean }
+const { title, description, noindex, cta, landing } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -12,6 +17,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <ConsentMode />
   <title>{title}</title>
   <meta name="description" content={description}>
   <link rel="canonical" href={canonical}>
@@ -27,9 +33,27 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <link rel="preload" href="/fonts/belleza-latin.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
-  <Nav />
+  {landing ? (
+    <header class="nav">
+      <div class="nav-in">
+        <span class="logo"><Image src={logo} alt={site.name} height={44} densities={[1, 2]} loading="eager" fetchpriority="high" /></span>
+        <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap">
+          <span class="muted portal" style="font-size: 14px">Mo–Do 9–15 Uhr, Fr 9–13 Uhr</span>
+          <a class="btn btn-g" href={site.phoneHref}><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>{site.phone}</span></a>
+        </div>
+      </div>
+    </header>
+  ) : <Nav cta={cta} />}
   <main><slot /></main>
-  <Footer />
+  {landing ? (
+    <footer class="foot" style="padding: 32px 0">
+      <div class="wrap" style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px">
+        <span>© {new Date().getFullYear()} Immovent Hausverwaltung GmbH · {site.street}, {site.city}</span>
+        <div style="display: flex; gap: 24px"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><button type="button" class="cb-link" data-cookie-settings>Cookie-Einstellungen</button></div>
+      </div>
+    </footer>
+  ) : <Footer />}
+  <CookieBanner />
   <script>
     // Noch kein Formular-Backend: nach der Browser-Validierung direkt zur Danke-Seite
     document.querySelectorAll<HTMLFormElement>('form[action="/danke-seite"]').forEach((f) =>

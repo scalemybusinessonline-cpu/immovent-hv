@@ -1,78 +1,99 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Arrow from '../components/Arrow.astro';
-import SectionHead from '../components/SectionHead.astro';
-import CtaBanner from '../components/CtaBanner.astro';
-
-const rows = [
-  ['Auftraggeber', 'Die Eigentümergemeinschaft', 'Der einzelne Eigentümer bzw. Vermieter'],
-  ['Gegenstand', 'Gemeinschaftseigentum: Dach, Fassade, Treppenhaus, Technik', 'Ihre vermieteten Einheiten und das Mietverhältnis'],
-  ['Abrechnung', 'Wirtschaftsplan & Jahresabrechnung', 'Betriebskostenabrechnung für Mieter'],
-  ['Typischer Fall', 'Wohnanlage mit mehreren Eigentümern', 'Mehrfamilienhaus oder Anlagewohnungen'],
-];
-
-const usps = [
-  { t: 'Persönlicher Ansprechpartner', d: 'Sie erreichen immer dieselbe Person.', icon: '<circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' },
-  { t: 'Lokale Expertise', d: 'Verwaltungserfahrung in Bamberg und der Region.', icon: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/>' },
-  { t: 'Digital & transparent', d: 'Kundenportal, klare Kommunikation, voller Überblick.', icon: '<rect x="3" y="4" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 21h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>' },
-];
+import mfhBalkone from '../assets/mehrfamilienhaus-balkone.webp';
+import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 ---
 <Base title="Leistungen: WEG- & Mietverwaltung in Bamberg | Immovent" description="Unsere Leistungen für Eigentümer in Bamberg: WEG-Verwaltung für Eigentümergemeinschaften und Mietverwaltung für Vermieter – persönlich, professionell, lösungsorientiert.">
 
-<section style="padding:96px 0 56px;text-align:center">
-  <div class="wrap stack" style="align-items:center;gap:22px">
-    <div class="eyebrow fade-up">Leistungen</div>
-    <h1 class="fade-up d1 h1" style="max-width:860px">Unsere Leistungen für Eigentümer in Bamberg</h1>
-    <p class="fade-up d2 muted lead" style="max-width:640px">Zwei Verwaltungsarten, ein Standard: persönlich, professionell und lösungsorientiert.</p>
-  </div>
+<section style="padding: 88px 0 64px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 24px; max-width: 920px; margin-left: auto; margin-right: auto">
+<div class="eyebrow">Leistungen</div>
+<h1>Moderne Hausverwaltung in Bamberg und Umgebung.</h1>
+<p class="lead" style="max-width: 680px">Wir übernehmen die Verwaltung Ihrer Eigentümergemeinschaft, Ihres Mehrfamilienhauses oder Ihrer Anlageimmobilie vollständig. Von der Abrechnung bis zur Handwerkerkoordination behalten Sie den Überblick.</p>
+</div>
 </section>
 
-<section style="padding:0 0 100px">
-  <div class="wrap grid2">
-    <a class="card hov blue fade-up d2 stack" href="/weg-verwaltung" style="padding:44px;text-decoration:none;gap:18px;min-height:360px">
-      <span class="eyebrow">Für Eigentümergemeinschaften</span>
-      <h2 style="font-size:38px">WEG-Verwaltung</h2>
-      <p style="font-size:17px;line-height:1.6">Kaufmännische und technische Verwaltung des Gemeinschaftseigentums, Eigentümerversammlungen und Beschlussumsetzung nach WEG.</p>
-      <span style="margin-top:auto;font-weight:600;display:inline-flex;gap:8px;align-items:center">Zur WEG-Verwaltung <Arrow /></span>
-    </a>
-    <a class="card hov fade-up d3 stack" href="/mietverwaltung" style="padding:44px;text-decoration:none;color:#1E1E1E;gap:18px;min-height:360px">
-      <span class="eyebrow">Für Vermieter &amp; Investoren</span>
-      <h2 style="font-size:38px">Mietverwaltung</h2>
-      <p class="muted" style="font-size:17px;line-height:1.6">Mieterbetreuung, Neuvermietung, Mietbuchhaltung, Betriebskostenabrechnung und Handwerkerkoordination für Ihre Mietobjekte.</p>
-      <span style="margin-top:auto;font-weight:600;color:#2563C9;display:inline-flex;gap:8px;align-items:center">Zur Mietverwaltung <Arrow /></span>
-    </a>
-  </div>
+<section style="padding: 0 0 32px">
+<div class="wrap grid2">
+<a class="card" href="/weg-verwaltung" style="overflow: hidden; display: flex; flex-direction: column">
+<Image src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<div style="padding: 40px; display: flex; flex-direction: column; gap: 18px; flex: 1">
+<div class="eyebrow">Für Eigentümergemeinschaften</div>
+<h2 style="font-size: 36px">WEG-Verwaltung</h2>
+<p class="muted">Kaufmännische und technische Verwaltung des Gemeinschaftseigentums, Eigentümerversammlungen und Beschlussumsetzung nach Wohnungseigentumsgesetz.</p>
+<span class="link-arrow" style="margin-top: auto; padding-top: 8px">Zur WEG-Verwaltung <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</a>
+<a class="card" href="/mietverwaltung" style="overflow: hidden; display: flex; flex-direction: column">
+<Image src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<div style="padding: 40px; display: flex; flex-direction: column; gap: 18px; flex: 1">
+<div class="eyebrow">Für Vermieter und Investoren</div>
+<h2 style="font-size: 36px">Mietverwaltung</h2>
+<p class="muted">Mieterbetreuung, Neuvermietung, Mietbuchhaltung, Betriebskostenabrechnung und Handwerkerkoordination für Ihre Mietobjekte.</p>
+<span class="link-arrow" style="margin-top: auto; padding-top: 8px">Zur Mietverwaltung <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+</div>
+</a>
+</div>
 </section>
 
-<section class="band" style="padding:90px 0">
-  <div class="wrap">
-    <SectionHead mb={40} eyebrow="Orientierung" title="Welche Verwaltung brauche ich?" />
-    <div class="sr" style="overflow-x:auto;border:1px solid #E6E8EE;border-radius:20px">
-      <table>
-        <thead><tr><th scope="col"><span class="sr-only">Merkmal</span></th><th scope="col">WEG-Verwaltung</th><th scope="col">Mietverwaltung</th></tr></thead>
-        <tbody>
-          {rows.map(([k, a, b]) => <tr><td>{k}</td><td>{a}</td><td>{b}</td></tr>)}
-        </tbody>
-      </table>
-    </div>
-  </div>
+<section style="padding: 0 0 112px">
+<div class="wrap">
+<div style="padding: 32px; border-radius: 16px; background: #EFF5FE; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px; max-width: 760px">
+<h3>Sondereigentumsverwaltung</h3>
+<p class="muted small">Ihre vermietete Eigentumswohnung verwalten wir als Sondereigentumsverwaltung mit, wenn wir auch die WEG-Verwaltung des Objekts übernehmen. So liegen Gemeinschaftseigentum und Wohnung in einer Hand.</p>
+</div>
+<a class="link-arrow" href="/weg-verwaltung">Zur WEG-Verwaltung <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+</div>
+</div>
 </section>
 
-<section style="padding:100px 0">
-  <div class="wrap">
-    <SectionHead eyebrow="Immer inklusive" title="Was jede Verwaltung bei uns ausmacht" />
-    <div class="grid3">
-      {usps.map((u) => (
-        <div class="card hov sr stack" style="padding:30px;gap:12px">
-          <div class="tile" style="width:44px;height:44px;border-radius:12px"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" set:html={u.icon} /></div>
-          <h3 style="font-size:20px">{u.t}</h3>
-          <p class="muted" style="font-size:15px;line-height:1.6">{u.d}</p>
-        </div>
-      ))}
-    </div>
-  </div>
+<section class="sec sec-alt">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Orientierung</div>
+<h2>Welche Verwaltung passt zu Ihrer Immobilie?</h2>
+</div>
+<div style="overflow-x: auto; border: 1px solid #E3E7EE; border-radius: 16px; background: #FFFFFF">
+<table>
+<thead><tr><th scope="col"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Merkmal</span></th><th scope="col">WEG-Verwaltung</th><th scope="col">Mietverwaltung</th></tr></thead>
+<tbody>
+<tr><td>Auftraggeber</td><td>Die Eigentümergemeinschaft</td><td>Der einzelne Eigentümer bzw. Vermieter</td></tr>
+<tr><td>Gegenstand</td><td>Gemeinschaftseigentum: Dach, Fassade, Treppenhaus, Technik</td><td>Ihre vermieteten Einheiten und das Mietverhältnis</td></tr>
+<tr><td>Abrechnung</td><td>Wirtschaftsplan und Jahresabrechnung</td><td>Betriebskostenabrechnung für Mieter</td></tr>
+<tr><td>Typischer Fall</td><td>Wohnanlage mit mehreren Eigentümern</td><td>Mehrfamilienhaus oder Anlagewohnungen</td></tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 
-<CtaBanner title="Unsicher, welche Verwaltung passt?" text="Im Erstgespräch klären wir das gemeinsam – unverbindlich." />
+<section class="sec">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Immer inklusive</div>
+<h2>Warum Immovent?</h2>
+</div>
+<div class="grid3">
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a4 4 0 110 8 4 4 0 010-8zM4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Persönlich</h3><p class="muted small">Bei uns erreichen Sie einen Ihrer beiden festen Ansprechpartner, ohne Zentrale und ohne Weiterleiten.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21zM12 7a2.5 2.5 0 110 5 2.5 2.5 0 010-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Bewusst begrenztes Wachstum</h3><p class="muted small">Wir wachsen mit Bedacht und übernehmen nur so viele Objekte, wie wir mit unserem Qualitätsanspruch betreuen können.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px; min-width: 0"><div class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5 12 5s9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7zM12 9a3 3 0 110 6 3 3 0 010-6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h3>Volle Transparenz</h3><p class="muted small">Sie wissen jederzeit über laufende Maßnahmen, anfallende Kosten und wichtige Entwicklungen Bescheid.</p></div>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding-top: 0">
+<div class="wrap">
+<div class="cta">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<div class="eyebrow w">Erstgespräch</div>
+<h2>Unsicher, welche Verwaltung passt?</h2>
+<p style="font-size: 17px; line-height: 1.6">Im Erstgespräch finden wir gemeinsam heraus, was zu Ihrer Immobilie passt. Unverbindlich und kostenfrei.</p>
+</div>
+<a class="btn btn-w" href="/kontakt" style="min-height: 64px; padding: 0 32px; font-size: 16px">Jetzt Erstgespräch vereinbaren</a>
+</div>
+</div>
+</section>
 
 </Base>

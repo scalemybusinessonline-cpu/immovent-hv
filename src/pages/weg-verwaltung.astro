@@ -1,125 +1,147 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import Check from '../components/Check.astro';
-import SectionHead from '../components/SectionHead.astro';
-import Faq from '../components/Faq.astro';
-import CtaBanner from '../components/CtaBanner.astro';
-import Roof from '../components/Roof.astro';
-
-const facts = [
-  ['§ 28 WEG', 'Wirtschaftsplan & Jahresabrechnung'],
-  ['§ 24 WEG', 'Versammlung & Beschluss-Sammlung'],
-  ['§ 19 WEG', 'Ordnungsmäßige Erhaltung'],
-  ['Portal', 'Alle Unterlagen digital für jeden Eigentümer'],
-];
-
-const tabs = [
-  { tab: 'Kaufmännisch', h: 'Kaufmännische Verwaltung', p: 'Saubere Zahlen sind die Grundlage für gute Entscheidungen in der Gemeinschaft.',
-    items: ['Wirtschaftsplan mit Hausgeld-Vorschüssen', 'Jahresabrechnung & Vermögensbericht', 'Hausgeldverwaltung & Mahnwesen', 'Verwaltung der Erhaltungsrücklage', 'Getrennte Konten je Gemeinschaft', 'Versicherungen & Dienstleisterverträge'] },
-  { tab: 'Versammlung & Beschlüsse', h: 'Versammlung & Beschlüsse', p: 'Gut vorbereitete Versammlungen, klare Protokolle und Beschlüsse, die auch umgesetzt werden.',
-    items: ['Einladung & Tagesordnung', 'Durchführung vor Ort oder hybrid', 'Protokoll & Beschluss-Sammlung', 'Umsetzung gefasster Beschlüsse', 'Abstimmung mit dem Verwaltungsbeirat', 'Umlaufbeschlüsse in Textform'] },
-  { tab: 'Technisch', h: 'Technische Verwaltung', p: 'Werterhalt durch vorausschauende Planung statt teurer Notfallreparaturen.',
-    items: ['Regelmäßige Objektbegehungen', 'Erhaltungsplanung für das Gemeinschaftseigentum', 'Einholung & Vergleich von Angeboten', 'Handwerkerkoordination & Abnahme', 'Wartungsverträge & Prüfpflichten', 'Schadensmanagement mit Versicherern'] },
-  { tab: 'Kommunikation', h: 'Kommunikation', p: 'Jeder Eigentümer weiß, was in seiner Anlage passiert – ohne nachfragen zu müssen.',
-    items: ['Fester Ansprechpartner für die Anlage', 'Digitales Kundenportal mit allen Unterlagen', 'Rückmeldung innerhalb von 24 Stunden', 'Notfall-Erreichbarkeit rund um die Uhr'] },
-];
-
-const steps = [
-  ['Kennenlernen', 'Gespräch mit Beirat oder Eigentümern, Besichtigung und Angebot.'],
-  ['Beschluss', 'Abberufung und Neubestellung in der Eigentümerversammlung – wir bereiten die Beschlussvorlage vor.'],
-  ['Übergabe', 'Unterlagen, Konten, Beschluss-Sammlung und Verträge übernehmen wir von der Vorverwaltung.'],
-  ['Start', 'Portalzugang für alle Eigentümer und ein fester Ansprechpartner ab Tag eins.'],
-];
-
-const faq = [
-  { q: 'Ab wie vielen Einheiten verwalten Sie eine WEG?', a: '[Mindestgröße ergänzen] – sprechen Sie uns gerne auch bei kleineren Gemeinschaften an.' },
-  { q: 'Wie schnell kann der Wechsel erfolgen?', a: 'Der Verwalter kann jederzeit abberufen werden, sein Vertrag endet spätestens sechs Monate danach. Ist der Beschluss gefasst, organisieren wir die Übergabe direkt mit der Vorverwaltung.' },
-  { q: 'Bieten Sie hybride Eigentümerversammlungen an?', a: 'Ja. Beschließt die Gemeinschaft die Online-Teilnahme, können Eigentümer auch digital teilnehmen und abstimmen.' },
-  { q: 'Verwalten Sie auch Sondereigentum einzelner Eigentümer?', a: 'Für vermietete Wohnungen bieten wir unsere <a href="/mietverwaltung">Mietverwaltung</a> an – auf Wunsch abgestimmt mit der WEG-Verwaltung aus einer Hand.' },
-];
+import altbau from '../assets/altbau-fassade.webp';
+import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 ---
 <Base title="WEG-Verwaltung Bamberg – Verwalterwechsel leicht gemacht | Immovent" description="WEG-Verwaltung in Bamberg und Umgebung: Wirtschaftsplan, Jahresabrechnung, Eigentümerversammlung und Erhaltung – erreichbar, zügig, nachvollziehbar.">
 
-<section class="blue" style="position:relative;overflow:hidden;padding:96px 0 88px">
-  <div aria-hidden="true" style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 60% 70% at 80% 30%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 60% 70% at 80% 30%,#000 20%,transparent 75%)"></div>
-  <Roof color="#FFFFFF" opacity={0.35} />
-  <div class="wrap grid2" style="position:relative;gap:56px;align-items:center">
-    <div class="stack" style="gap:26px">
-      <nav class="fade-up" aria-label="Breadcrumb" style="display:flex;gap:8px;align-items:center;font-size:14px"><a href="/" style="color:#fff;text-decoration:none">Start</a><span aria-hidden="true">/</span><span>WEG-Verwaltung</span></nav>
-      <h1 class="fade-up d1 h1">WEG-Verwaltung in Bamberg und Umgebung</h1>
-      <p class="fade-up d2 lead" style="max-width:540px">Für Eigentümergemeinschaften, die eine Verwaltung erwarten, die erreichbar ist, Beschlüsse zügig umsetzt und Zahlen nachvollziehbar macht.</p>
-      <div class="fade-up d3" style="display:flex;gap:12px;flex-wrap:wrap">
-        <a class="btn btn-w" href="/kontakt">Angebot für Ihre WEG anfragen</a>
-        <a class="btn btn-o" href="#wechsel">So läuft der Wechsel</a>
-      </div>
-    </div>
-    <div class="fade-up d3" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
-      {facts.map(([k, v]) => (
-        <div style="padding:24px;border:1px solid rgba(255,255,255,.4);border-radius:18px;background:rgba(255,255,255,.03)">
-          <div style="font-family:'Geist Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.06em">{k}</div>
-          <div style="font-size:18px;font-weight:600;margin-top:10px;line-height:1.35">{v}</div>
-        </div>
-      ))}
-    </div>
-  </div>
+<section style="padding: 72px 0 0">
+<div class="wrap split" style="align-items: center; gap: 64px">
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div class="eyebrow">WEG-Verwaltung</div>
+<h1>WEG-Verwaltung in Bamberg und Umgebung.</h1>
+<p class="lead" style="max-width: 540px">Für Eigentümergemeinschaften, die ihre Anlage in verlässlichen Händen wissen und Abrechnungen verstehen wollen.</p>
+<div style="display: flex; gap: 12px; flex-wrap: wrap">
+<a class="btn btn-p" href="/kontakt">Erstgespräch vereinbaren <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+<a class="btn btn-g" href="#wechsel">So läuft der Wechsel</a>
+</div>
+</div>
+<Image class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="eager" fetchpriority="high" style="height: 520px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+</div>
+<div class="wrap" style="margin-top: 56px">
+<div class="grid4" style="border-top: 1px solid #E3E7EE; padding-top: 32px; padding-bottom: 8px">
+<div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">§ 28 WEG</div><div style="font-size: 17px; font-weight: 600; line-height: 1.4">Wirtschaftsplan und Jahresabrechnung</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">§ 24 WEG</div><div style="font-size: 17px; font-weight: 600; line-height: 1.4">Versammlung und Beschluss-Sammlung</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">§ 19 WEG</div><div style="font-size: 17px; font-weight: 600; line-height: 1.4">Ordnungsmäßige Erhaltung</div></div><div style="display: flex; flex-direction: column; gap: 6px"><div style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">Kundenportal</div><div style="font-size: 17px; font-weight: 600; line-height: 1.4">Alle Unterlagen digital für jeden Eigentümer</div></div>
+</div>
+</div>
 </section>
 
-<section style="padding:110px 0 90px">
-  <div class="wrap">
-    <SectionHead mb={40} eyebrow="Leistungsumfang" title="Was wir für Ihre Gemeinschaft übernehmen" />
-    <div class="tabs" role="tablist" aria-label="Leistungsbereiche">
-      {tabs.map((t, i) => (
-        <button class="tab" type="button" role="tab" id={`tab-${i}`} aria-controls={`panel-${i}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{t.tab}</button>
-      ))}
-    </div>
-    {tabs.map((t, i) => (
-      <div class="card" role="tabpanel" id={`panel-${i}`} aria-labelledby={`tab-${i}`} hidden={i !== 0} style="padding:40px;display:flex;flex-wrap:wrap;gap:40px">
-        <div class="stack" style="flex:1 1 300px;gap:14px"><h3 style="font-size:28px">{t.h}</h3><p class="muted" style="font-size:16px;line-height:1.6">{t.p}</p></div>
-        <div style="flex:2 1 420px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px 28px">
-          {t.items.map((it) => <Check>{it}</Check>)}
-        </div>
-      </div>
-    ))}
-  </div>
+<section class="sec">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="eyebrow">Was wir für Sie übernehmen</div>
+<h2>Was wir als WEG-Verwalter für Ihre Gemeinschaft übernehmen.</h2>
+<Image class="photo" src={altbau} alt="Sanierte und unsanierte Altbaufassade im Vergleich" loading="lazy" style="height: 340px; margin-top: 16px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Als WEG-Verwalter führen wir die laufenden Geschäfte Ihrer Eigentümergemeinschaft und vertreten sie nach außen. Kleinere Maßnahmen entscheiden wir selbst, im Notfall handeln wir sofort. Größere Entscheidungen bereiten wir vor, beschlossen werden sie von Ihnen in der Eigentümerversammlung.</p>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Wir erstellen den Wirtschaftsplan mit den Hausgeld-Vorschüssen, die Jahresabrechnung und den jährlichen Vermögensbericht nach <br>§ 28 WEG. Zur Eigentümerversammlung laden wir mindestens einmal im Jahr fristgerecht ein. Jeder Beschluss wird in der Beschluss-Sammlung dokumentiert.</p>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Ihre Anlage wird persönlich betreut, Sie erreichen immer einen Ihrer beiden Ansprechpartner. Alle Unterlagen, Abrechnungen und Protokolle sind für jeden Eigentümer jederzeit im Kundenportal abrufbar.</p>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Anstehende Erhaltungsmaßnahmen planen wir vorausschauend und achten darauf, dass die Erhaltungsrücklage dazu passt. Bei größeren Maßnahmen holen wir Vergleichsangebote ein, bereiten die Beschlussvorlage mit klarer Kostenübersicht vor und begleiten die Ausführung bis zur Abnahme.</p>
+</div>
+</div>
 </section>
 
-<section id="wechsel" class="band" style="padding:90px 0">
-  <div class="wrap">
-    <SectionHead mb={56} eyebrow="Verwalterwechsel" title="Wechseln ist einfacher, als viele denken." lead="Seit der WEG-Reform 2020 kann eine Gemeinschaft ihren Verwalter jederzeit abberufen. Den Ablauf übernehmen wir." />
-    <div style="position:relative">
-      <div aria-hidden="true" style="position:absolute;left:0;right:0;top:23px;height:2px;background:linear-gradient(90deg,#5797F5,#E4E5E9)"></div>
-      <ol class="grid4" style="position:relative;list-style:none;margin:0;padding:0">
-        {steps.map(([t, d], i) => (
-          <li class="sr stack" style="gap:14px">
-            <div style={`width:48px;height:48px;border-radius:50%;background:${i === 3 ? '#2563C9' : '#5797F5'};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 0 0 6px #fff`}>{i + 1}</div>
-            <div style="font-size:20px;font-weight:700;letter-spacing:-.02em">{t}</div>
-            <p class="muted" style="font-size:15px;line-height:1.6">{d}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </div>
+<section class="sec sec-alt">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Leistungsumfang</div>
+<h2>Leistungen der WEG-Verwaltung im Überblick.</h2>
+</div>
+<div class="tabs" role="tablist" aria-label="Leistungsbereiche">
+<button class="tab on" type="button" role="tab" id="tab-0" aria-controls="tp-0" aria-selected="true">Kaufmännisch</button>
+<button class="tab" type="button" role="tab" id="tab-1" aria-controls="tp-1" aria-selected="false" tabindex="-1">Versammlung und Beschlüsse</button>
+<button class="tab" type="button" role="tab" id="tab-2" aria-controls="tp-2" aria-selected="false" tabindex="-1">Technisch</button>
+<button class="tab" type="button" role="tab" id="tab-3" aria-controls="tp-3" aria-selected="false" tabindex="-1">Kommunikation</button>
+</div>
+<div class="card" role="tabpanel" id="tp-0" aria-labelledby="tab-0" style="padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 12px"><div class="h3l" style="font-size: 28px">Kaufmännische Verwaltung</div><p class="muted small">Saubere Zahlen sind die Grundlage für gute Entscheidungen in der Gemeinschaft.</p></div>
+<div style="flex: 2 1 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px 32px"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Wirtschaftsplan mit Hausgeld-Vorschüssen</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Jahresabrechnung und Vermögensbericht</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Hausgeldverwaltung und Mahnwesen</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Versicherungen und Dienstleisterverträge</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Getrennte Konten je Gemeinschaft</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Verwaltung der Erhaltungsrücklage</span></div></div>
+</div>
+<div class="card" role="tabpanel" id="tp-1" aria-labelledby="tab-1" hidden style="padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 12px"><div class="h3l" style="font-size: 28px">Versammlung und Beschlüsse</div><p class="muted small">Gut vorbereitete Versammlungen, klare Protokolle und Beschlüsse, die auch umgesetzt werden.</p></div>
+<div style="flex: 2 1 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px 32px"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Einladung und Tagesordnung</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Umlaufbeschlüsse in Textform</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Protokoll und Beschluss-Sammlung</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Umsetzung gefasster Beschlüsse</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Abstimmung mit dem Verwaltungsbeirat</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Durchführung vor Ort, hybrid oder online</span></div></div>
+</div>
+<div class="card" role="tabpanel" id="tp-2" aria-labelledby="tab-2" hidden style="padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 12px"><div class="h3l" style="font-size: 28px">Technische Verwaltung</div><p class="muted small">Werterhalt durch vorausschauende Planung statt teurer Notfallreparaturen.</p></div>
+<div style="flex: 2 1 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px 32px"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Regelmäßige Objektbegehungen</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Wartungsverträge und Prüfpflichten</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Einholung und Vergleich von Angeboten</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Handwerkerkoordination und Abnahme</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Erhaltungsplanung für das Gemeinschaftseigentum</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Schadensmanagement mit Versicherern</span></div></div>
+</div>
+<div class="card" role="tabpanel" id="tp-3" aria-labelledby="tab-3" hidden style="padding: 40px; display: flex; flex-wrap: wrap; gap: 40px">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 12px"><div class="h3l" style="font-size: 28px">Kommunikation</div><p class="muted small">Sie wissen jederzeit, was in Ihrer Anlage passiert, ohne nachfragen zu müssen.</p></div>
+<div style="flex: 2 1 420px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 16px 32px"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Feste Ansprechpartner: immer einer von uns beiden</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Digitales Kundenportal mit allen Unterlagen</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Rückmeldung werktags innerhalb von 24 Stunden</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Feste Notfallnummern für jedes Objekt</span></div></div>
+</div>
+</div>
 </section>
 
-<section style="padding:110px 0">
-  <div class="wrap grid2" style="gap:64px;align-items:start">
-    <div class="sr stack" style="gap:16px">
-      <div class="eyebrow">FAQ WEG-Verwaltung</div>
-      <h2 class="h2">Häufige Fragen von Eigentümergemeinschaften</h2>
-    </div>
-    <Faq name="faq-weg" items={faq} />
-  </div>
+<section id="wechsel" class="sec">
+<div class="wrap">
+<div class="head" style="max-width: 760px">
+<div class="eyebrow">Verwalterwechsel</div>
+<h2>WEG-Verwalter wechseln in vier Schritten.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Seit der WEG-Reform 2020 kann Ihre Gemeinschaft den Verwalter jederzeit abberufen. Für die Abberufung genügt ein Mehrheitsbeschluss, ein wichtiger Grund ist nicht mehr nötig. Der Vertrag mit dem bisherigen Verwalter endet spätestens sechs Monate danach.</p>
+</div>
+<div class="steps grid4">
+<div class="step"><div class="step-n">01</div><h3>Kennenlernen</h3><p class="muted small">Gespräch mit Beirat oder Eigentümern, Besichtigung und Angebot.</p></div>
+<div class="step"><div class="step-n">02</div><h3>Beschluss</h3><p class="muted small">Abberufung und Neubestellung in der Eigentümerversammlung. Die Beschlussvorlage bereiten wir vor.</p></div>
+<div class="step"><div class="step-n">03</div><h3>Übergabe</h3><p class="muted small">Unterlagen, Konten, Rücklagen, Beschluss-Sammlung und Verträge übernehmen wir von der Vorverwaltung.</p></div>
+<div class="step"><div class="step-n">04</div><h3>Start</h3><p class="muted small">Portalzugang für alle Eigentümer und feste Ansprechpartner ab Tag eins.</p></div>
+</div>
+</div>
 </section>
 
-<CtaBanner ring title="Unzufrieden mit Ihrer aktuellen WEG-Verwaltung?" text="Sprechen Sie mit uns – wir zeigen Ihnen, wie der Wechsel für Ihre Gemeinschaft abläuft." />
+<section class="sec sec-alt">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<div class="eyebrow">Kosten</div>
+<h2 style="font-size: clamp(28px, 3.2vw, 38px)">Was kostet die WEG-Verwaltung?</h2>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Die Verwaltervergütung wird in der Regel als monatlicher Betrag pro Wohneinheit vereinbart. Sie richtet sich nach der Größe der Anlage, dem Zustand des Gebäudes und dem gewünschten Leistungsumfang. Für kleine Gemeinschaften mit weniger als 8 Einheiten vereinbaren wir eine monatliche Pauschale.</p>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Besondere Leistungen wie die Begleitung größerer Sanierungen regeln wir gesondert im Verwaltervertrag. Nach dem Erstgespräch und einer Besichtigung erhalten Sie ein transparentes Angebot.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<div class="eyebrow">Einzugsgebiet</div>
+<h2 style="font-size: clamp(28px, 3.2vw, 38px)">WEG-Verwaltung für Bamberg und Umgebung.</h2>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Wir verwalten Eigentümergemeinschaften in Bamberg und ca. 50 km Umkreis. Objektbegehungen und Eigentümerversammlungen finden persönlich vor Ort statt.</p>
+<div class="tags"><span class="tag">Bamberg</span><span class="tag">Hallstadt</span><span class="tag">Forchheim</span><span class="tag">Erlangen</span><span class="tag">Coburg</span><span class="tag">Haßfurt</span><span class="tag">Bayreuth</span><span class="tag">uvm.</span></div>
+</div>
+</div>
+</section>
 
-</Base>
+<section class="sec">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="eyebrow">FAQ WEG-Verwaltung</div>
+<h2>Häufige Fragen von Eigentümergemeinschaften.</h2>
+
+</div>
+<div class="faqs">
+<details class="faq" name="faq" open><summary>Ab wie vielen Einheiten verwalten Sie eine WEG?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Es gibt keine Mindestgröße. Für kleine Gemeinschaften mit weniger als 8 Einheiten arbeiten wir mit einer monatlichen Pauschale.</p></details>
+<details class="faq" name="faq"><summary>Wie schnell kann der Wechsel erfolgen?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Der Verwalter kann jederzeit abberufen werden, sein Vertrag endet spätestens sechs Monate danach. Ist der Beschluss gefasst, organisieren wir die Übergabe direkt mit der Vorverwaltung.</p></details>
+<details class="faq" name="faq"><summary>Bieten Sie hybride Eigentümerversammlungen an?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Ja. Beschließt die Gemeinschaft die Online-Teilnahme, können Eigentümer auch digital teilnehmen und abstimmen.</p></details>
+<details class="faq" name="faq"><summary>Verwalten Sie auch Sondereigentum einzelner Eigentümer?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Ja. Als Sondereigentumsverwaltung betreuen wir einzelne Wohnungen in Anlagen, deren WEG-Verwaltung wir übernehmen. So liegt alles in einer Hand. Mehr dazu unter <a href="/mietverwaltung">Mietverwaltung</a>.</p></details>
+</div>
+</div>
+</section>
+
+<section class="sec" style="padding-top: 0">
+<div class="wrap">
+<div class="cta">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<div class="eyebrow w">Erstgespräch</div>
+<h2>Unzufrieden mit Ihrer aktuellen WEG-Verwaltung?</h2>
+<p style="font-size: 17px; line-height: 1.6">Sprechen Sie mit uns. Wir zeigen Ihnen, wie der Wechsel für Ihre Gemeinschaft abläuft.</p>
+</div>
+<a class="btn btn-w" href="/kontakt" style="min-height: 64px; padding: 0 32px; font-size: 16px">Jetzt Erstgespräch vereinbaren</a>
+</div>
+</div>
+</section>
 
 <script>
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
   const select = (t: HTMLButtonElement) => {
     for (const x of tabs) {
       const on = x === t;
+      x.classList.toggle('on', on);
       x.setAttribute('aria-selected', String(on));
       x.tabIndex = on ? 0 : -1;
       document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on;
@@ -136,3 +158,5 @@ const faq = [
     });
   });
 </script>
+
+</Base>

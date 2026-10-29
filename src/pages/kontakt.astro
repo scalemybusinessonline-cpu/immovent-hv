@@ -1,73 +1,40 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
-
-const hours = [['Montag – Donnerstag', '09:00 – 16:00'], ['Freitag', '09:00 – 14:00'], ['Termine außerhalb', 'nach Vereinbarung']];
-const tile = 'flex:none;width:44px;height:44px;border-radius:12px';
+import ContactForm from '../components/ContactForm.astro';
+import altbau from '../assets/altbau-fassade.webp';
 ---
-<Base title="Kontakt – Erstgespräch anfragen | Immovent Hausverwaltung" description="Sprechen wir über Ihre Immobilie: Erstgespräch zur WEG- oder Mietverwaltung in Bamberg anfragen. Rückmeldung innerhalb von 24 Stunden.">
+<Base title="Kontakt – Erstgespräch anfragen | Immovent Hausverwaltung" description="Sprechen wir über Ihre Immobilie: Erstgespräch zur WEG- oder Mietverwaltung in Bamberg anfragen. Rückmeldung innerhalb von 24 Stunden." cta="#formular">
 
-<section style="padding:88px 0 110px">
-  <div class="wrap" style="display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start">
-
-    <div class="stack" style="flex:1 1 380px;gap:28px">
-      <div class="eyebrow fade-up">Kontakt</div>
-      <h1 class="fade-up d1" style="font-size:clamp(40px,5.4vw,64px);line-height:1.04">Sprechen wir über Ihre Immobilie.</h1>
-      <p class="fade-up d2 muted lead">Füllen Sie das Formular aus – wir melden uns innerhalb von 24 Stunden.</p>
-
-      <div class="fade-up d3 stack" style="gap:12px">
-        <a class="card hov" href={site.phoneHref} style="padding:20px;display:flex;gap:16px;align-items:center;text-decoration:none;color:#1E1E1E">
-          <span class="tile" style={tile}><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-          <span><span class="muted" style="font-size:13px;display:block">Telefon</span><span style="font-size:17px;font-weight:600">{site.phone}</span></span>
-        </a>
-        <a class="card hov" href={`mailto:${site.email}`} style="padding:20px;display:flex;gap:16px;align-items:center;text-decoration:none;color:#1E1E1E">
-          <span class="tile" style={tile}><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-          <span><span class="muted" style="font-size:13px;display:block">E-Mail</span><span style="font-size:17px;font-weight:600">{site.email}</span></span>
-        </a>
-        <div class="card" style="padding:20px;display:flex;gap:16px;align-items:center">
-          <span class="tile" style={tile}><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
-          <span><span class="muted" style="font-size:13px;display:block">Büro</span><span style="font-size:17px;font-weight:600">{site.street}, {site.city}</span></span>
-        </div>
-      </div>
-
-      <div class="card fade-up d3" style="padding:24px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <h2 style="font-size:18px;letter-spacing:-.02em">Bürozeiten</h2>
-          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#11663F"><span class="pulse" style="width:8px;height:8px;border-radius:50%;background:#1F9D6B"></span>Notfall 24/7</span>
-        </div>
-        {hours.map(([d, t], i) => (
-          <div class="row" style={i === hours.length - 1 ? 'border-bottom:0' : undefined}><span class="muted">{d}</span><span style="font-weight:600">{t}</span></div>
-        ))}
-      </div>
-    </div>
-
-    <div class="card fade-up d2" style="flex:1.3 1 480px;padding:40px;box-shadow:0 40px 80px -40px rgba(20,20,20,.25)">
-      <h2 style="font-size:26px;margin-bottom:8px">Erstgespräch anfragen</h2>
-      <p class="muted" style="font-size:15px;margin-bottom:28px">Unverbindlich und kostenfrei.</p>
-      <form method="post" action="/danke-seite" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:18px">
-        <fieldset class="full stack" style="gap:6px;border:0;margin:0;padding:0">
-          <legend style="font-size:14px;font-weight:500;color:#333;padding:0;margin-bottom:6px">Art der Verwaltung*</legend>
-          <div class="seg-group">
-            {['WEG-Verwaltung', 'Mietverwaltung', 'Noch unsicher'].map((v, i) => (
-              <label class="seg"><input type="radio" name="art" value={v} checked={i === 0}><span>{v}</span></label>
-            ))}
-          </div>
-        </fieldset>
-        <label class="field">Vorname<input type="text" name="vorname" autocomplete="given-name"></label>
-        <label class="field">Nachname*<input type="text" name="nachname" autocomplete="family-name" required></label>
-        <label class="field">E-Mail*<input type="email" name="email" autocomplete="email" required></label>
-        <label class="field">Telefon*<input type="tel" name="telefon" autocomplete="tel" required></label>
-        <label class="field">Standort der Immobilie<input type="text" name="standort"></label>
-        <label class="field">Anzahl Einheiten*<input type="number" name="einheiten" min="1" required></label>
-        <label class="field full">Nachricht*<textarea name="nachricht" rows="5" required></textarea></label>
-        <div class="full stack" style="gap:16px">
-          <p class="muted" style="font-size:13px">Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben gemäß <a href="/datenschutz">Datenschutzerklärung</a> zu.</p>
-          <button class="btn btn-p" type="submit" style="width:100%">Gespräch anfragen</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
+<section style="padding: 88px 0 112px">
+<div class="wrap">
+<div class="head" style="max-width: 760px">
+<div class="eyebrow">Kontakt</div>
+<h1>Sprechen wir über Ihre Immobilie.</h1>
+<p class="lead">Füllen Sie das Formular aus, wir melden uns werktags innerhalb von 24 Stunden. Oder rufen Sie uns einfach direkt an.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start">
+<div style="flex: 1 1 340px; display: flex; flex-direction: column; gap: 32px; min-width: 0">
+<div style="display: flex; flex-direction: column; border-top: 1px solid #E3E7EE">
+<a href="tel:+4915174530871" style="display: flex; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid #E3E7EE; text-decoration: none; color: #16202E"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span><span class="muted" style="display: block; font-size: 13px">Telefon</span><span style="font-size: 17px; font-weight: 600">0151 74530871</span></span></a>
+<a href="mailto:info@immovent-hv.de" style="display: flex; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid #E3E7EE; text-decoration: none; color: #16202E"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 014.5 5h15A1.5 1.5 0 0121 6.5v11a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5zM3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span><span class="muted" style="display: block; font-size: 13px">E-Mail</span><span style="font-size: 17px; font-weight: 600">info@immovent-hv.de</span></span></a>
+<div style="display: flex; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid #E3E7EE"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21zM12 7a2.5 2.5 0 110 5 2.5 2.5 0 010-5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span><span><span class="muted" style="display: block; font-size: 13px">Büro</span><span style="font-size: 17px; font-weight: 600">Schützenstr. 21, 96047 Bamberg</span></span></div>
+</div>
+<div class="card" style="padding: 24px 28px; background: #EFF5FE; border-color: #EFF5FE">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px"><h3 style="font-size: 18px">Bürozeiten</h3></div>
+<div class="row" style="border-bottom-color: #E3E7EE"><span class="muted">Montag – Donnerstag</span><span style="font-weight: 600">09:00 – 15:00</span></div>
+<div class="row" style="border-bottom-color: #E3E7EE"><span class="muted">Freitag</span><span style="font-weight: 600">09:00 – 13:00</span></div>
+<div class="row" style="border-bottom-color: #E3E7EE"><span class="muted">Termine außerhalb</span><span style="font-weight: 600">nach Vereinbarung</span></div>
+<div class="row"><span class="muted">Notfälle</span><span style="font-weight: 600; text-align: right">Notfallnummer des Fachbetriebs für Ihr Objekt</span></div>
+</div>
+<Image class="photo" src={altbau} alt="Altbaufassaden in der Stadt" loading="lazy" style="height: 280px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+</div>
+<div id="formular" class="card" style="flex: 1.4 1 480px; padding: 40px; min-width: 0">
+<h2 style="font-size: 32px; margin-bottom: 28px">Erstgespräch anfragen</h2>
+<ContactForm />
+</div>
+</div>
+</div>
 </section>
 
 </Base>

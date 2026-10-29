@@ -1,0 +1,210 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import altbau from '../assets/altbau-fassade.webp';
+import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
+
+const steps = [
+  { q: 'Was soll verwaltet werden?', name: 'art', opts: [
+    { label: 'WEG-Verwaltung', sub: 'Eigentümergemeinschaft' },
+    { label: 'Mietverwaltung', sub: 'Vermietetes Objekt' },
+    { label: 'Noch unsicher', sub: 'Wir beraten Sie' },
+  ] },
+  { q: 'Wie viele Einheiten sollen betreut werden?', name: 'einheiten', opts: [
+    { label: '1–9 Einheiten' }, { label: '10–29 Einheiten' }, { label: '30–79 Einheiten' }, { label: '80+ Einheiten' },
+  ] },
+  { q: 'Wo liegt die Immobilie und wann soll es losgehen?', name: 'zeitpunkt', standort: true, opts: [
+    { label: 'So bald wie möglich' }, { label: 'In 3–6 Monaten' }, { label: 'Zum Jahreswechsel' }, { label: 'Erst mal informieren' },
+  ] },
+] as { q: string; name: string; standort?: boolean; opts: { label: string; sub?: string }[] }[];
+---
+<Base landing title="Hausverwaltung wechseln – Angebot anfordern | Immovent" description="Unzufrieden mit Ihrer Hausverwaltung? Kostenloses Angebot für WEG- oder Mietverwaltung in Bamberg und Umgebung anfordern. Den Wechsel organisieren wir.">
+
+<section id="funnel" class="sec-alt" style="padding: 72px 0 96px">
+<div class="wrap split" style="align-items: center; gap: 56px">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<div class="eyebrow">WEG- und Mietverwaltung · Bamberg und Umgebung</div>
+<h1 style="font-size: clamp(38px, 4.8vw, 58px)">Unzufrieden mit Ihrer Hausverwaltung? Wechseln Sie zu Immovent.</h1>
+<p class="lead" style="max-width: 540px">Feste Ansprechpartner, Rückmeldung werktags innerhalb von 24 Stunden und alle Unterlagen digital. Den Wechsel organisieren wir für Sie.</p>
+<div class="checks"><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Kostenloses, unverbindliches Angebot für Ihr Objekt</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Übergabe mit der Vorverwaltung übernehmen wir</span></div><div class="check"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10.5l3.5 3.5 7.5-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Über 150 betreute Einheiten in der Region</span></div></div>
+</div>
+
+<form class="funnel" method="post" aria-label="Angebot anfordern" data-funnel>
+<div class="f-head">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><span style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">Angebot in 60 Sekunden</span><span class="muted" style="font-size: 13px; font-variant-numeric: tabular-nums">Schritt <span data-step-n>1</span> von 4</span></div>
+<div class="f-bar"><span style="width: 25%"></span></div>
+</div>
+
+{steps.map((s, i) => (
+<div class="f-body" data-step={i + 1} hidden={i > 0}>
+<div class="f-q">{s.q}</div>
+{s.standort && <label class="field"><span class="lbl">Standort der Immobilie <span class="req" aria-hidden="true">*</span></span><input type="text" name="standort" placeholder="z. B. 96047 Bamberg" autocomplete="postal-code" required></label>}
+<input type="hidden" name={s.name}>
+<div class="tiles">
+{s.opts.map((o) => (
+<button type="button" class="tile" aria-pressed="false" value={o.label}><span class="radio" aria-hidden="true"></span><span>{o.label}{o.sub && <small>{o.sub}</small>}</span></button>
+))}
+</div>
+{i > 0 && <div class="f-nav"><button type="button" class="back">← Zurück</button></div>}
+</div>
+))}
+
+<div class="f-body" data-step="4" hidden>
+<div class="f-q">Wohin dürfen wir Ihr Angebot schicken?</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 14px">
+<label class="field"><span class="lbl">Vorname</span><input type="text" name="vorname" autocomplete="given-name"></label>
+<label class="field"><span class="lbl">Nachname <span class="req" aria-hidden="true">*</span></span><input type="text" name="nachname" autocomplete="family-name" required></label>
+<label class="field"><span class="lbl">E-Mail-Adresse <span class="req" aria-hidden="true">*</span></span><input type="email" name="email" autocomplete="email" required></label>
+<label class="field"><span class="lbl">Telefonnummer <span class="req" aria-hidden="true">*</span></span><input type="tel" name="telefon" autocomplete="tel" required></label>
+</div>
+<label class="consent"><input type="checkbox" name="datenschutz" required><span>Ich stimme der Verarbeitung meiner Angaben zur Bearbeitung der Anfrage gemäß <a href="/datenschutz">Datenschutzerklärung</a> zu.</span></label>
+<div class="f-nav"><button type="button" class="back">← Zurück</button><button type="submit" class="btn btn-p">Kostenloses Angebot anfordern</button></div>
+</div>
+
+<div class="f-body" data-step="5" hidden style="padding: 40px 28px; align-items: flex-start">
+<div class="ic-box" style="width: 56px; height: 56px; border-radius: 14px; background: #E4F4EC; color: #13613D"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div class="f-q">Vielen Dank, Ihre Anfrage ist bei uns.</div>
+<p class="muted" style="font-size: 16px; line-height: 1.6">Wir melden uns werktags innerhalb von 24 Stunden telefonisch, um die Details zu Ihrem Objekt zu besprechen.</p>
+<button type="reset" class="back">Neue Anfrage starten</button>
+</div>
+<div class="trust"><span><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 11h12v9H6zM8.5 11V8a3.5 3.5 0 017 0v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>Daten nur für Ihre Anfrage</span><span>Unverbindlich und kostenfrei</span><span>Rückmeldung werktags in 24 h</span></div>
+</form>
+</div>
+</section>
+
+<section style="border-bottom: 1px solid #E3E7EE; padding: 40px 0">
+<div class="wrap grid4">
+<div class="stat"><div class="stat-n" style="font-size: 34px">150+</div><div class="stat-l">betreute Einheiten</div></div>
+<div class="stat"><div class="stat-n" style="font-size: 34px">2</div><div class="stat-l">feste Ansprechpartner</div></div>
+<div class="stat"><div class="stat-n" style="font-size: 34px">24 h</div><div class="stat-l">Rückmeldung an Werktagen</div></div>
+<div class="stat"><div class="stat-n" style="font-size: 34px">ca. 50 km</div><div class="stat-l">rund um Bamberg</div></div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div class="split" style="align-items: center; gap: 56px; margin-bottom: 48px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="eyebrow">Kennen Sie das?</div>
+<h2>Typische Probleme mit der Hausverwaltung und wie wir sie lösen.</h2>
+</div>
+<Image class="photo" src={altbau} alt="Sanierte und unsanierte Altbaufassade im Vergleich" loading="lazy" style="height: 280px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+</div>
+<div class="grid2">
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px"><div style="font-size: 14px; color: #4F5B6B"><span style="font-weight: 600; color: #7A4300">Statt:</span> Telefon klingelt ins Leere, E-Mails bleiben liegen</div><h3>Zwei Ansprechpartner, die Ihr Objekt kennen</h3><p class="muted small">Sie erreichen immer einen Ihrer beiden Ansprechpartner und bekommen werktags innerhalb von 24 Stunden eine Rückmeldung.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px"><div style="font-size: 14px; color: #4F5B6B"><span style="font-weight: 600; color: #7A4300">Statt:</span> Abrechnungen kommen spät oder sind nicht nachvollziehbar</div><h3>Pünktliche, verständliche Abrechnungen</h3><p class="muted small">Jahresabrechnung, Wirtschaftsplan und Betriebskostenabrechnung fristgerecht im Kundenportal.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px"><div style="font-size: 14px; color: #4F5B6B"><span style="font-weight: 600; color: #7A4300">Statt:</span> Reparaturen ziehen sich über Monate</div><h3>Handwerker koordiniert, Fortschritt sichtbar</h3><p class="muted small">Vergleichsangebote, Terminabstimmung und Nachverfolgung, bis die Maßnahme abgeschlossen ist.</p></div>
+<div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 14px"><div style="font-size: 14px; color: #4F5B6B"><span style="font-weight: 600; color: #7A4300">Statt:</span> Beschlüsse werden gefasst, aber nie umgesetzt</div><h3>Beschlüsse werden umgesetzt</h3><p class="muted small">Was die Gemeinschaft beschließt, setzen wir um und dokumentieren den Stand im Kundenportal.</p></div>
+</div>
+<div style="margin-top: 40px"><a class="btn btn-p" href="#funnel">Jetzt kostenloses Angebot anfordern <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+</div>
+</section>
+
+<section class="sec sec-alt">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Ablauf</div>
+<h2>So einfach wechseln Sie die Hausverwaltung.</h2>
+</div>
+<div class="steps grid4">
+<div class="step"><div class="step-n">01</div><h3>Anfrage senden</h3><p class="muted small">Vier kurze Fragen, dauert weniger als eine Minute.</p></div>
+<div class="step"><div class="step-n">02</div><h3>Gespräch und Besichtigung</h3><p class="muted small">Wir lernen Ihr Objekt kennen und klären offene Fragen.</p></div>
+<div class="step"><div class="step-n">03</div><h3>Transparentes Angebot</h3><p class="muted small">Klare Leistungen, keine versteckten Positionen.</p></div>
+<div class="step"><div class="step-n">04</div><h3>Wir übernehmen</h3><p class="muted small">Übergabe mit der Vorverwaltung, Portalzugang ab dem ersten Tag.</p></div>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap split" style="align-items: center; gap: 56px">
+<Image class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="height: 380px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div class="eyebrow">Persönlich statt anonym</div>
+<h2>Die Geschäftsführung betreut Ihr Objekt persönlich.</h2>
+<p class="muted" style="font-size: 17px; line-height: 1.75">Immovent ist eine inhabergeführte Hausverwaltung aus Bamberg. Bei uns sprechen Sie nicht mit einem Callcenter, sondern direkt mit den Menschen, die Ihr Objekt verwalten. Sie erreichen immer einen von uns beiden.</p>
+<div style="display: flex; gap: 16px; flex-wrap: wrap; padding-top: 6px">
+<div class="card" style="padding: 14px 18px; display: flex; gap: 12px; align-items: center"><div class="ic-box" style="border-radius: 50%; font-weight: 600; font-size: 15px">NG</div><div><div style="font-weight: 600">Nina Geyer</div><div class="muted" style="font-size: 13px">Geschäftsführerin</div></div></div>
+<div class="card" style="padding: 14px 18px; display: flex; gap: 12px; align-items: center"><div class="ic-box" style="border-radius: 50%; font-weight: 600; font-size: 15px">LR</div><div><div style="font-weight: 600">Leon Rauh</div><div class="muted" style="font-size: 13px">Geschäftsführer</div></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sec sec-alt">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="eyebrow">Häufige Fragen</div>
+<h2>Fragen vor dem Wechsel.</h2>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Lieber direkt sprechen? <a href="tel:+4915174530871">0151 74530871</a></p>
+</div>
+<div class="faqs">
+<details class="faq" name="faq" open><summary>Ist das Angebot wirklich kostenlos?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Ja. Erstgespräch, Besichtigung und Angebot sind kostenlos und unverbindlich.</p></details>
+<details class="faq" name="faq"><summary>Wie schnell kann der Wechsel erfolgen?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Bei einer WEG kann der Verwalter per Mehrheitsbeschluss jederzeit abberufen werden, sein Vertrag endet spätestens sechs Monate danach. Bei der Mietverwaltung gilt die Kündigungsfrist Ihres bisherigen Vertrags. Wir prüfen beides im Erstgespräch.</p></details>
+<details class="faq" name="faq"><summary>Was kostet die Verwaltung?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Die Vergütung richtet sich nach Anzahl der Einheiten, Zustand des Objekts und Leistungsumfang. Sie erhalten ein transparentes Angebot nach dem Erstgespräch.</p></details>
+<details class="faq" name="faq"><summary>Muss ich mich um die Übergabe kümmern?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Nein. Unterlagen, Konten und laufende Verträge übernehmen wir direkt von Ihrer bisherigen Verwaltung.</p></details>
+</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="wrap">
+<div class="cta">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<div class="eyebrow w">Angebot</div>
+<h2>Ihr Angebot ist eine Minute entfernt.</h2>
+<p style="font-size: 17px; line-height: 1.6">Kostenlos und unverbindlich. Wir melden uns werktags innerhalb von 24 Stunden.</p>
+</div>
+<a class="btn btn-w" href="#funnel" style="width: 245px; height: 55px">Jetzt Angebot anfordern</a>
+</div>
+</div>
+</section>
+
+<script>
+  // Funnel: Kachel wählen -> nächster Schritt. Noch kein Formular-Backend, daher nur Danke-Ansicht.
+  const form = document.querySelector<HTMLFormElement>('[data-funnel]')!;
+  const panels = form.querySelectorAll<HTMLElement>('[data-step]');
+  const bar = form.querySelector<HTMLElement>('.f-bar span')!;
+  let step = 1;
+
+  const show = (n: number) => {
+    step = n;
+    panels.forEach((p) => (p.hidden = p.dataset.step !== String(n)));
+    form.querySelector<HTMLElement>('.f-head')!.hidden = n > 4;
+    form.querySelector('[data-step-n]')!.textContent = String(Math.min(n, 4));
+    bar.style.width = (Math.min(n, 4) / 4) * 100 + '%';
+  };
+
+  form.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    const tile = t.closest<HTMLButtonElement>('.tile');
+    if (tile) {
+      const panel = tile.closest<HTMLElement>('[data-step]')!;
+      const standort = panel.querySelector<HTMLInputElement>('input[name="standort"]');
+      if (standort && !standort.reportValidity()) return;
+      panel.querySelectorAll('.tile').forEach((b) => {
+        b.classList.toggle('on', b === tile);
+        b.setAttribute('aria-pressed', String(b === tile));
+      });
+      panel.querySelector<HTMLInputElement>('input[type="hidden"]')!.value = tile.value;
+      show(step + 1);
+    } else if (t.closest('.back') && t.closest('[type="button"]')) {
+      show(Math.max(1, step - 1));
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    show(5);
+  });
+
+  form.addEventListener('reset', () => {
+    form.querySelectorAll<HTMLInputElement>('input[type="hidden"]').forEach((i) => (i.value = ''));
+    form.querySelectorAll('.tile').forEach((b) => {
+      b.classList.remove('on');
+      b.setAttribute('aria-pressed', 'false');
+    });
+    show(1);
+  });
+</script>
+
+</Base>

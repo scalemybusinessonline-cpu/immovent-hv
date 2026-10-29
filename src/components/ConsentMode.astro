@@ -1,0 +1,63 @@
+---
+// Consent Mode v2 (Basic): alles „denied", GTM lädt erst nach Einwilligung.
+// Muss im <head> vor allen anderen Skripten stehen.
+import { site } from '../data/site';
+const gtmId = site.gtmId;
+---
+<script is:inline define:vars={{ gtmId }}>
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    functionality_storage: 'granted',
+    security_storage: 'granted',
+  });
+  gtag('set', 'ads_data_redaction', true);
+
+  const KEY = 'immovent-consent';
+  const MAX_AGE = 365 * 24 * 60 * 60 * 1000; // nach 12 Monaten erneut fragen
+  let gtmLoaded = false;
+
+  const read = () => {
+    try {
+      const c = JSON.parse(localStorage.getItem(KEY));
+      return c && Date.now() - c.ts < MAX_AGE ? c : null;
+    } catch { return null; }
+  };
+
+  const apply = (c) => {
+    const s = (on) => (on ? 'granted' : 'denied');
+    gtag('consent', 'update', {
+      analytics_storage: s(c.stats),
+      ad_storage: s(c.marketing),
+      ad_user_data: s(c.marketing),
+      ad_personalization: s(c.marketing),
+    });
+    gtag('set', 'ads_data_redaction', !c.marketing);
+    dataLayer.push({ event: 'consent_update', consent_stats: c.stats, consent_marketing: c.marketing });
+    if ((c.stats || c.marketing) && !gtmLoaded) {
+      gtmLoaded = true;
+      dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+      const j = document.createElement('script');
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+      document.head.appendChild(j);
+    }
+  };
+
+  window.consent = {
+    get: read,
+    save(c) {
+      try { localStorage.setItem(KEY, JSON.stringify({ stats: c.stats, marketing: c.marketing, ts: Date.now() })); } catch {}
+      // Läuft GTM schon, neu laden: Custom-HTML-Tags lesen den Consent nur beim Init
+      if (gtmLoaded) location.reload();
+      else apply(c);
+    },
+  };
+
+  const stored = read();
+  if (stored) apply(stored);
+</script>

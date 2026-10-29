@@ -1,0 +1,50 @@
+<div class="cb" id="cookie-banner" role="dialog" aria-labelledby="cb-title" aria-describedby="cb-text" hidden>
+  <div class="cb-in card">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div class="h3l" id="cb-title" style="font-size: 24px">Ihre Privatsphäre</div>
+      <p class="muted small" id="cb-text">Wir verwenden technisch notwendige Speicherung, damit die Website funktioniert. Mit Ihrer Einwilligung nutzen wir außerdem Dienste von Google und Meta, um die Nutzung der Website auszuwerten und unsere Anzeigen zu messen. Ihre Auswahl können Sie jederzeit über „Cookie-Einstellungen“ im Fußbereich ändern. Mehr in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>
+    </div>
+    <div class="cb-opts" hidden>
+      <label class="consent"><input type="checkbox" checked disabled><span><strong>Notwendig</strong> · Speichert Ihre Cookie-Auswahl. Immer aktiv.</span></label>
+      <label class="consent"><input type="checkbox" name="stats"><span><strong>Statistik</strong> · Google Analytics: Auswertung, welche Seiten wie genutzt werden.</span></label>
+      <label class="consent"><input type="checkbox" name="marketing"><span><strong>Marketing</strong> · Google Ads und Meta Pixel: Messung und Personalisierung von Anzeigen.</span></label>
+    </div>
+    <div class="cb-btns">
+      <button class="btn btn-g" type="button" data-cb="settings">Einstellungen</button>
+      <button class="btn btn-g" type="button" data-cb="save" hidden>Auswahl speichern</button>
+      <button class="btn btn-p" type="button" data-cb="deny">Alle ablehnen</button>
+      <button class="btn btn-p" type="button" data-cb="all">Alle akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  type Choice = { stats: boolean; marketing: boolean };
+  const consent = (window as any).consent as { get(): Choice | null; save(c: Choice): void };
+  const banner = document.getElementById('cookie-banner')!;
+  const opts = banner.querySelector<HTMLElement>('.cb-opts')!;
+  const box = (n: string) => banner.querySelector<HTMLInputElement>(`input[name="${n}"]`)!;
+  const btn = (n: string) => banner.querySelector<HTMLButtonElement>(`[data-cb="${n}"]`)!;
+
+  const open = (settings: boolean) => {
+    const c = consent.get();
+    box('stats').checked = !!c?.stats;
+    box('marketing').checked = !!c?.marketing;
+    opts.hidden = !settings;
+    btn('settings').hidden = settings;
+    btn('save').hidden = !settings;
+    banner.hidden = false;
+  };
+  const done = (c: Choice) => {
+    banner.hidden = true;
+    consent.save(c);
+  };
+
+  btn('settings').addEventListener('click', () => open(true));
+  btn('save').addEventListener('click', () => done({ stats: box('stats').checked, marketing: box('marketing').checked }));
+  btn('deny').addEventListener('click', () => done({ stats: false, marketing: false }));
+  btn('all').addEventListener('click', () => done({ stats: true, marketing: true }));
+  document.querySelectorAll('[data-cookie-settings]').forEach((el) => el.addEventListener('click', () => open(true)));
+
+  if (!consent.get()) open(false);
+</script>

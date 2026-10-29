@@ -1,9 +1,0 @@
----
-interface Props { eyebrow: string; title: string; lead?: string; xl?: boolean; mb?: number }
-const { eyebrow, title, lead, xl, mb = 48 } = Astro.props;
----
-<div class="sr stack" style={`gap:16px;max-width:720px;margin-bottom:${mb}px`}>
-  <div class="eyebrow">{eyebrow}</div>
-  <h2 class={xl ? 'h2-xl' : 'h2'}>{title}</h2>
-  {lead && <p class="muted" style="font-size:18px;line-height:1.6">{lead}</p>}
-</div>

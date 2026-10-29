@@ -3,13 +3,14 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 import { nav, site } from '../data/site';
 
+interface Props { cta?: string }
+const { cta = '/kontakt' } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const ctaHref = path === '/' ? '#anfrage' : '/kontakt';
 ---
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="/" aria-label="Immovent Startseite">
-      <Image src={logo} alt={site.name} height={46} densities={[1, 2]} loading="eager" fetchpriority="high" />
+      <Image src={logo} alt={site.name} height={44} densities={[1, 2]} loading="eager" fetchpriority="high" />
     </a>
     <nav class="links" aria-label="Hauptnavigation">
       {nav.map((l) => (
@@ -17,33 +18,29 @@ const ctaHref = path === '/' ? '#anfrage' : '/kontakt';
       ))}
     </nav>
     <div class="nav-cta">
-      <a class="btn btn-g" href={site.portal}>Kundenportal</a>
-      {path !== '/kontakt'
-        ? <a class="btn btn-p" href={ctaHref}>Erstgespräch</a>
-        : <span class="btn btn-p" style="visibility:hidden" aria-hidden="true">Erstgespräch</span>}
-    </div>
-    <button class="burger" type="button" popovertarget="mnav" aria-label="Menü öffnen">
-      <span></span><span></span><span></span>
-    </button>
-    <div id="mnav" popover>
-      <nav class="mlinks" aria-label="Mobile Navigation">
-        {nav.map((l) => (
-          <a href={l.href} class:list={{ on: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
-        ))}
-      </nav>
-      <div class="stack" style="gap:10px">
-        {path !== '/kontakt' && <a class="btn btn-p" href={ctaHref}>Erstgespräch vereinbaren</a>}
-        <a class="btn btn-g" href={site.portal}>Kundenportal</a>
-        <a class="mphone" href={site.phoneHref}>{site.phone}</a>
-      </div>
+      <a class="btn btn-g portal" href={site.portal}>Kundenportal</a>
+      <a class="btn btn-p" href={cta}>Erstgespräch</a>
+      <button class="btn btn-g icon-btn menu-btn" type="button" aria-label="Menü" aria-expanded="false" aria-controls="mnav"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
     </div>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile Navigation" hidden>
+    {nav.map((l) => (
+      <a href={l.href} class:list={{ on: path === l.href }} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+    ))}
+    <a href={site.portal}>Kundenportal</a>
+  </nav>
 </header>
 
 <script>
-  // Menü schließen, wenn ein Anker auf derselben Seite angeklickt wird (z. B. #anfrage)
-  const m = document.getElementById('mnav');
-  m?.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).closest('a')) m.hidePopover();
+  const btn = document.querySelector<HTMLButtonElement>('.menu-btn')!;
+  const menu = document.getElementById('mnav')!;
+  const toggle = (open: boolean) => {
+    menu.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+  };
+  btn.addEventListener('click', () => toggle(menu.hidden));
+  // Menü schließen, wenn ein Anker auf derselben Seite angeklickt wird
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) toggle(false);
   });
 </script>

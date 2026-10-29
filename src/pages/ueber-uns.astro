@@ -1,68 +1,71 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import CtaBanner from '../components/CtaBanner.astro';
-
-const team = [
-  { name: 'Nina Geyer', role: 'Geschäftsführerin', text: '[Kurzer Satz zu Schwerpunkt und Erfahrung]' },
-  { name: 'Leon Rauh', role: '[Funktion]', text: '[Kurzer Satz zu Schwerpunkt und Erfahrung]' },
-];
-
-const stats = [['150+', 'betreute Einheiten'], ['50 km', 'Einzugsgebiet rund um Bamberg'], ['24 h', 'Rückmeldung auf jede Anfrage']];
+import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 ---
 <Base title="Über uns – Hausverwaltung aus Bamberg | Immovent" description="Immovent macht Hausverwaltung anders: digital und effizient in den Prozessen, transparent in der Kommunikation, persönlich in der Betreuung – in Bamberg und 50 km Umkreis.">
 
-<section style="padding:96px 0 72px">
-  <div class="wrap stack" style="gap:24px;max-width:960px">
-    <div class="eyebrow fade-up">Über uns</div>
-    <h1 class="fade-up d1" style="font-size:clamp(40px,5.6vw,70px);line-height:1.03">Hausverwaltung, wie wir sie selbst gerne hätten.</h1>
-    <p class="fade-up d2 muted" style="font-size:20px;line-height:1.6;max-width:720px">Immovent entstand aus einer einfachen Beobachtung: Viele Eigentümer sind unzufrieden mit ihrer Hausverwaltung – schlechte Erreichbarkeit, intransparente Prozesse, kein digitaler Zugang. Wir machen es anders.</p>
-  </div>
+<section style="padding: 88px 0 64px">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
+<div class="eyebrow">Über uns</div>
+<h1 style="max-width: 900px">Hausverwaltung, wie wir sie selbst gerne hätten.</h1>
+<p class="lead" style="max-width: 720px">Wir haben Immovent gegründet, weil wir Hausverwaltung besser machen wollen als viele auf dem Markt. Wir kennen beide Seiten, als Mieter und als Eigentümer: niemanden zu erreichen, keine Rückmeldung zu bekommen, Beschlüsse, die nie umgesetzt werden. Genau das machen wir anders.</p>
+</div>
 </section>
 
-<section style="padding:0 0 100px">
-  <div class="wrap">
-    <div class="ph fade-up d3" style="border-radius:28px;height:440px">[Teamfoto oder Bild aus Bamberg]</div>
-  </div>
+<section style="padding: 0 0 112px">
+<div class="wrap">
+<Image class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="eager" fetchpriority="high" style="height: 480px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+</div>
 </section>
 
-<section style="padding:0 0 100px">
-  <div class="wrap grid2" style="gap:64px;align-items:start">
-    <div class="sr stack" style="gap:16px">
-      <div class="eyebrow">Unsere Haltung</div>
-      <h2 class="h2">Persönlich, professionell und lösungsorientiert.</h2>
-    </div>
-    <div class="sr stack muted" style="gap:20px;font-size:18px;line-height:1.7">
-      <p>Wir haben Immovent gegründet, weil wir Hausverwaltung anders gestalten möchten: digital und effizient in den Prozessen, transparent in der Kommunikation und persönlich in der Betreuung.</p>
-      <p>Für Eigentümer und Eigentümergemeinschaften, die eine Verwaltung auf Augenhöhe suchen – in Bamberg und rund 50 km Umkreis.</p>
-    </div>
-  </div>
+<section style="padding: 0 0 112px">
+<div class="wrap split">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<div class="eyebrow">Unsere Haltung</div>
+<h2>Persönlich, professionell und lösungsorientiert.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Wir wachsen bewusst begrenzt. Nur so bleibt genug Zeit für jedes Objekt, statt im Tagesgeschäft unterzugehen.</p>
+<p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Sie haben immer dieselben Ansprechpartner: Sie erreichen einen von uns beiden, persönlich und ohne Umwege. Digital und effizient in den Prozessen, transparent in der Kommunikation. Für Eigentümer und Eigentümergemeinschaften in Bamberg und ca. 50 km Umkreis.</p>
+</div>
+</div>
 </section>
 
-<section class="band" style="padding:90px 0">
-  <div class="wrap">
-    <div class="sr stack" style="gap:16px;max-width:720px;margin-bottom:48px">
-      <div class="eyebrow">Ihre Ansprechpartner</div>
-      <h2 class="h2">Menschen statt Hotline.</h2>
-    </div>
-    <div class="grid2">
-      {team.map((m) => (
-        <div class="card hov sr" style="padding:16px;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
-          <div class="ph" style="width:160px;height:180px;border-radius:14px;flex:none">[Foto]</div>
-          <div class="stack" style="gap:8px;padding:8px;flex:1 1 200px"><h3 style="font-size:24px">{m.name}</h3><div class="eyebrow" style="font-size:12px">{m.role}</div><p class="muted" style="font-size:15px;line-height:1.6">{m.text}</p></div>
-        </div>
-      ))}
-    </div>
-  </div>
+<section class="sec sec-alt">
+<div class="wrap">
+<div class="head">
+<div class="eyebrow">Geschäftsführung</div>
+<h2>Ihre Ansprechpartner bei Immovent.</h2>
+
+</div>
+<div class="grid2">
+<div class="card" style="padding: 16px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap"><svg role="img" aria-label="Platzhalter für Foto von Nina Geyer" width="160" height="192" viewBox="0 0 400 480" style="display: block; flex: none; border-radius: 12px"><rect width="400" height="480" fill="#EFF5FE"></rect><circle cx="225" cy="252" r="46" fill="#C6D7F2"></circle><path d="M120 480C120 382 168 318 225 318S330 382 330 480Z" fill="#C6D7F2"></path><g transform="translate(27 60) scale(0.8)"><polygon points="15,130 203,24 272,66 87,172 87,430 15,470" fill="#5797F5"></polygon><line x1="270" y1="65" x2="418" y2="150" stroke="#5797F5" stroke-width="5"></line></g></svg><div style="display: flex; flex-direction: column; gap: 8px; padding: 8px; flex: 1 1 200px"><div class="h3l" style="font-size: 28px">Nina Geyer</div><div style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">Geschäftsführerin</div></div></div>
+<div class="card" style="padding: 16px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap"><svg role="img" aria-label="Platzhalter für Foto von Leon Rauh" width="160" height="192" viewBox="0 0 400 480" style="display: block; flex: none; border-radius: 12px"><rect width="400" height="480" fill="#EFF5FE"></rect><circle cx="225" cy="252" r="46" fill="#C6D7F2"></circle><path d="M120 480C120 382 168 318 225 318S330 382 330 480Z" fill="#C6D7F2"></path><g transform="translate(27 60) scale(0.8)"><polygon points="15,130 203,24 272,66 87,172 87,430 15,470" fill="#5797F5"></polygon><line x1="270" y1="65" x2="418" y2="150" stroke="#5797F5" stroke-width="5"></line></g></svg><div style="display: flex; flex-direction: column; gap: 8px; padding: 8px; flex: 1 1 200px"><div class="h3l" style="font-size: 28px">Leon Rauh</div><div style="font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #1F4FA3">Geschäftsführer</div></div></div>
+</div>
+</div>
 </section>
 
-<section style="padding:100px 0">
-  <div class="wrap grid3">
-    {stats.map(([n, l]) => (
-      <div class="sr stack" style="gap:10px;padding:8px 0;border-top:2px solid #1E1E1E"><div style="font-size:44px;font-weight:700;letter-spacing:-.04em;padding-top:16px">{n}</div><div class="muted" style="font-size:16px">{l}</div></div>
-    ))}
-  </div>
+<section class="sec">
+<div class="wrap grid4">
+<div class="stat"><div class="stat-n">150+</div><div class="stat-l">betreute Einheiten</div></div>
+<div class="stat"><div class="stat-n">ca. 50 km</div><div class="stat-l">Einzugsgebiet rund um Bamberg</div></div>
+<div class="stat"><div class="stat-n">24 h</div><div class="stat-l">Rückmeldung an Werktagen</div></div>
+<div class="stat"><div class="stat-n">§ 34c</div><div class="stat-l">Erlaubnis als WEG- und Mietverwalter</div></div>
+</div>
 </section>
 
-<CtaBanner title="Lernen Sie uns kennen." text="Vereinbaren Sie ein unverbindliches Erstgespräch – wir nehmen uns Zeit für Ihr Objekt und Ihre Fragen." />
+<section class="sec" style="padding-top: 0">
+<div class="wrap">
+<div class="cta">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 640px">
+<div class="eyebrow w">Erstgespräch</div>
+<h2>Lernen Sie uns kennen.</h2>
+<p style="font-size: 17px; line-height: 1.6">Vereinbaren Sie ein unverbindliches Erstgespräch. Wir nehmen uns Zeit für Ihr Objekt und Ihre Fragen.</p>
+</div>
+<a class="btn btn-w" href="/kontakt" style="min-height: 64px; padding: 0 32px; font-size: 16px">Jetzt Erstgespräch vereinbaren</a>
+</div>
+</div>
+</section>
 
 </Base>

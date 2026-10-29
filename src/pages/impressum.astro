@@ -1,53 +1,60 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site } from '../data/site';
 ---
 <Base title="Impressum | Immovent Hausverwaltung" description="Impressum der Immovent Hausverwaltung GmbH, Schützenstr. 21, 96047 Bamberg.">
 
-<section style="padding:96px 0 110px">
-  <div class="wrap legal">
-    <div class="eyebrow fade-up">Rechtliches</div>
-    <h1 class="fade-up d1 h1">Impressum</h1>
+<section style="padding: 88px 0 112px">
+<div class="wrap">
+<div class="legal">
+<div class="eyebrow">Rechtliches</div>
+<h1 style="margin: 16px 0 24px">Impressum</h1>
 
-    <div class="fade-up d2">
-      <p>Immovent Hausverwaltung GmbH<br>{site.street}<br>{site.city}<br>Deutschland</p>
 
-      <h2>Vertretungsberechtigte</h2>
-      <p>Leon Rauh<br>Nina Geyer</p>
+<h2>Angaben gemäß § 5 DDG</h2>
+<address class="addr"><strong>Immovent Hausverwaltung GmbH</strong><br>Schützenstr. 21<br>96047 Bamberg</address>
 
-      <h2>Kontakt</h2>
-      <p>Tel.: <a href={site.phoneHref}>015174530871</a><br>E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a></p>
+<h3>Vertreten durch</h3>
+<p>Nina Geyer und Leon Rauh, Geschäftsführer</p>
 
-      <h2>Handelsregister</h2>
-      <p>HRB 12362, Amtsgericht Bamberg</p>
+<h3>Kontakt</h3>
+<p>Telefon: <a href="tel:+4915174530871">0151 74530871</a><br>E-Mail: <a href="mailto:info@immovent-hv.de">info@immovent-hv.de</a></p>
 
-      <h2>Steuernummer</h2>
-      <p>Steuernummer: [Steuernummer]</p>
+<h3>Registereintrag</h3>
+<p>Handelsregister: Amtsgericht Bamberg<br>Registernummer: HRB 12362</p>
 
-      <h2>Umsatzsteuer-ID</h2>
-      <p>USt-IdNr.: [Umsatzsteuer-ID]</p>
+<h3>Umsatzsteuer-ID</h3>
+<p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:&nbsp;DE461946832</p>
 
-      <h2>Berufsrechtliche Regelungen / Erlaubnis</h2>
-      <p>§ 34c GewO (Immobilienverwaltung / Makler)<br>Zuständige Erlaubnis-/Aufsichtsbehörde: Industrie- und Handelskammer für München und Oberbayern</p>
 
-      <h2>Redaktionsverantwortlich (§ 18 Abs. 2 MStV)</h2>
-      <p>Leon Rauh<br>Immovent Hausverwaltung GmbH<br>{site.street}<br>{site.city}</p>
+<h2>Erlaubnis und Aufsicht</h2>
+<p>Erlaubnis als Wohnimmobilienverwalter nach § 34c Abs. 1 Satz 1 Nr. 4 GewO&nbsp;</p>
+<p>Erlaubnis- und Aufsichtsbehörde:<br>IHK für München und Oberbayern<br>Max-Joseph-Straße 2<br>80333 München-Altstadt-Lehel</p>
 
-      <h2>Hinweis zur Online-Streitbeilegung</h2>
-      <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br><a href="https://ec.europa.eu/consumers/odr" rel="noopener">https://ec.europa.eu/consumers/odr</a></p>
-      <p>Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.</p>
+<h3>Berufsrechtliche Regelungen</h3>
+<p>Gewerbeordnung (GewO) und Makler- und Bauträgerverordnung (MaBV), abrufbar unter <a href="https://www.gesetze-im-internet.de">www.gesetze-im-internet.de</a>.</p>
 
-      <h2>Haftungshinweis</h2>
-      <h3>Haftung für Inhalte</h3>
-      <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
-      <h3>Haftung für Links</h3>
-      <p>Unser Angebot enthält ggf. Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.</p>
-      <h3>Urheberrecht</h3>
-      <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.</p>
+<h3>Berufshaftpflichtversicherung</h3>
+<p>Versicherer: Versicherungskammer Bayern<br>Räumlicher Geltungsbereich: Deutschland</p>
 
-      <p class="muted" style="margin-top:40px;font-size:14px">Stand: Juli 2026</p>
-    </div>
-  </div>
+<h2>Redaktionell verantwortlich</h2>
+<p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Leon Rauh, Schützenstr. 21, 96047 Bamberg</p>
+
+<h2>Verbraucherstreitbeilegung</h2>
+<p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+<h2>Haftung für Inhalte</h2>
+<p>Wir erstellen die Inhalte dieser Website mit Sorgfalt. Für die Richtigkeit, Vollständigkeit und Aktualität können wir dennoch keine Gewähr übernehmen. Als Diensteanbieter sind wir nach den allgemeinen Gesetzen für eigene Inhalte verantwortlich. Zur Überwachung fremder, übermittelter oder gespeicherter Informationen sind wir nicht verpflichtet. Sobald wir von einer Rechtsverletzung erfahren, entfernen wir die betreffenden Inhalte umgehend.</p>
+
+<h2>Haftung für Links</h2>
+<p>Unsere Website enthält Links zu externen Websites, auf deren Inhalte wir keinen Einfluss haben. Für diese Inhalte ist der jeweilige Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar. Werden uns Rechtsverletzungen bekannt, entfernen wir die betreffenden Links umgehend.</p>
+
+<h2>Urheberrecht</h2>
+<p>Texte, Bilder und Grafiken auf dieser Website unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung und Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen unserer schriftlichen Zustimmung.</p>
+
+<p style="margin-top: 48px; font-size: 14px">Stand: Oktober 2026</p>
+
+</div>
+</div>
 </section>
 
 </Base>

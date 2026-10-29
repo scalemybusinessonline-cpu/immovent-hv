@@ -6,6 +6,7 @@ export const site = {
   street: 'Schützenstr. 21',
   city: '96047 Bamberg',
   portal: 'https://portal.immovent-hv.de/app/login',
+  gtmId: 'GTM-N2XXWC92',
 };
 
 export const nav = [
