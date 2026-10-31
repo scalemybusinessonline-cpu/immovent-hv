@@ -24,8 +24,11 @@ Statische Astro-Site (Astro 7). Aktueller Design-Stand: `~/Downloads/Immovent We
 - [x] Kennzahl vereinheitlicht: 150+ betreute Einheiten (Entscheidung Matthew, 21.10.2026)
 - [x] Sitemap (`@astrojs/sitemap`, ohne Danke-Seite) + `robots.txt`; SEO-Übersicht als Google Sheet „SEO-Sitemap – Immovent-hv“ (31.10.)
 - [x] Fotos als AVIF mit WebP-Fallback (~50 % kleiner, 31.10.)
+- [x] Alte Wix-SEO-Titel/-Beschreibungen für `/`, `/leistungen`, `/ueber-uns`, `/kontakt` übernommen (31.10.); SEO-Daten der Live-Seite im Sheet „SEO-Sitemap Live-Seite (Wix)“
+- [ ] URLs ohne Schrägstrich (wie Wix) + Weiterleitung `/home` → `/` (Entscheidung offen, abhängig vom Hosting)
+- [ ] Live-Impressum (Wix) zeigt Platzhalter [Steuernummer]/[Umsatzsteuer-ID] → Kunde informieren
 - [ ] Hosting/Deploy (kein Staging, kein Auto-Deploy auf GitHub, geprüft 30.10.), OG-Image
-- [ ] Optional: zu lange Titel (WEG 67, Miet 62 Zeichen) und Beschreibungen (Leistungen 169, Über uns 171) kürzen; 320px-Overflow
+- [ ] Optional: zu lange Titel (WEG 67, Miet 62 Zeichen) kürzen; 320px-Overflow
 
 ## Dateien
 - `src/pages/*` – Seiten · `src/components/*` – Nav, Footer, ContactForm, ConsentMode, CookieBanner

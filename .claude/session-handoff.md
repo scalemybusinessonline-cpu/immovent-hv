@@ -1,5 +1,5 @@
 ---
-timestamp: 2026-10-31T00:22:46Z
+timestamp: 2026-10-31T10:58:27Z
 author: Matthew
 ---
 
@@ -34,6 +34,9 @@ author: Matthew
 - 31.10.: Fotos als AVIF (`<Picture formats={['avif','webp']}>`, ~50 % kleiner; `picture{display:contents}` + `picture>source{display:none}`, Layout alt/neu identisch geprüft)
 - 31.10.: Telefon-Links `white-space:nowrap`; FAQ-Hinweis Startseite mit `<br>` auf 2 Zeilen
 - 31.10.: Datenschutz: Wix-Absatz + Prüfbox entfernt (`.pruef`-CSS gelöscht), Abschnitt 2 enthält nur noch Logfiles
+- 31.10.: Push `d266e3c` (Sheet-Anbindung, Funnel, AVIF, Sitemap, Layout, Datenschutz ohne Wix)
+- 31.10. danach (uncommitted): leerer `.todo`-Marker bei „9. Meta Pixel“ + `.todo`-CSS entfernt; alte Wix-SEO-Titel/-Beschreibungen für `/`, `/leistungen`, `/ueber-uns`, `/kontakt` übernommen (User-Wunsch)
+- 31.10.: Live-Wix-Seite ausgewertet → Google Sheet „SEO-Sitemap Live-Seite (Wix) – Immovent-hv“ (ID `1DHLDbfqbFgITnCb7CiCfeppzd2H-8eiW2VUA-NTkoGc`), User kopiert es als 2. Reiter in die SEO-Sitemap
 
 ## Aktueller Status
 - Dev-Server läuft im Hintergrund (Astro 7 daemonisiert): `astro dev stop` / `astro dev status` / `astro dev logs`
@@ -44,7 +47,12 @@ author: Matthew
 ## Nächste Schritte
 - [x] Script „neueste oben“ (Version 7) live getestet 30.10. 01:05: neueste Zeile 2, Zähler steigt (4, 5), URL in P
 - [ ] Alle Testzeilen im Sheet löschen lassen (User)
-- [ ] Alles committen/pushen (Sheet-Anbindung, Funnel, Layout, Sitemap, AVIF, Datenschutz) – wartet auf OK
+- [x] Push `d266e3c`
+- [x] Todo-Marker + alte SEO-Texte gepusht
+- [ ] **Entscheidung User:** URLs ohne Schrägstrich (`trailingSlash: 'never'`, `build.format: 'file'`), damit identisch mit Wix (Wix leitet `/kontakt/` → `/kontakt` per 301); einzige Weiterleitung dann `/home` → `/` (Wix liefert `/home` mit 200), Ort hängt vom Hosting ab
+- [ ] GSC-Zugriff klären: weitere alte Wix-URLs (z. B. `/copy-of-…`) prüfen
+- [ ] SEO-Sitemap-Sheet Reiter 1: Titel/Beschreibung der 4 Seiten mit alten Texten nachziehen (Datei nicht überschreiben, enthält User-Reiter 2)
+- [ ] Live-Impressum: Platzhalter [Steuernummer]/[Umsatzsteuer-ID] sichtbar → Kunde informieren
 - [ ] Optional (User gefragt): 320px-Overflow (breite Buttons, Tabelle /leistungen) beheben
 - [ ] Optional (User fragen): zu lange Titel (WEG 67, Miet 62) und Beschreibungen (Leistungen 169, Über uns 171) kürzen
 - Hinweis: Beim Einfügen in den Apps-Script-Editor gingen mehrfach Textteile verloren (Autocomplete/Terminal-Umbruch). Code per `pbcopy` geben, kurze Zeilen; Fehler per curl-POST + Error-Text in Antwort-HTML diagnostizieren
