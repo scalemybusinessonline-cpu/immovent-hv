@@ -7,6 +7,8 @@ export const site = {
   city: '96047 Bamberg',
   portal: 'https://portal.immovent-hv.de/app/login',
   gtmId: 'GTM-N2XXWC92',
+  // /exec-URL der Apps-Script-Web-App (apps-script/Code.gs); leer = Formulare senden nichts
+  formEndpoint: 'https://script.google.com/macros/s/AKfycbzaTBULfco_MX4rnyJd73y65U9DeKU3jCZIPtiUO7oNdXn9NgpK5qpqmQCLN3j4BUeN/exec',
 };
 
 export const nav = [

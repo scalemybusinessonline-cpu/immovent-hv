@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
 import altbau from '../assets/altbau-fassade.webp';
@@ -8,7 +8,7 @@ import altbau from '../assets/altbau-fassade.webp';
 
 <section style="padding: 88px 0 112px">
 <div class="wrap">
-<div class="head" style="max-width: 760px">
+<div class="head">
 <div class="eyebrow">Kontakt</div>
 <h1>Sprechen wir über Ihre Immobilie.</h1>
 <p class="lead">Füllen Sie das Formular aus, wir melden uns werktags innerhalb von 24 Stunden. Oder rufen Sie uns einfach direkt an.</p>
@@ -27,7 +27,7 @@ import altbau from '../assets/altbau-fassade.webp';
 <div class="row" style="border-bottom-color: #E3E7EE"><span class="muted">Termine außerhalb</span><span style="font-weight: 600">nach Vereinbarung</span></div>
 <div class="row"><span class="muted">Notfälle</span><span style="font-weight: 600; text-align: right">Notfallnummer des Fachbetriebs für Ihr Objekt</span></div>
 </div>
-<Image class="photo" src={altbau} alt="Altbaufassaden in der Stadt" loading="lazy" style="height: 280px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={altbau} alt="Altbaufassaden in der Stadt" loading="lazy" style="height: 280px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 </div>
 <div id="formular" class="card" style="flex: 1.4 1 480px; padding: 40px; min-width: 0">
 <h2 style="font-size: 32px; margin-bottom: 28px">Erstgespräch anfragen</h2>

@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
 import mfhBalkone from '../assets/mehrfamilienhaus-balkone.webp';
@@ -19,7 +19,7 @@ import wohnanlageGlas from '../assets/wohnanlage-glasbalkone.webp';
 </div>
 </div>
 <div class="hero-media">
-<Image class="photo" src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="eager" fetchpriority="high" style="height: 540px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="eager" fetchpriority="high" style="height: 540px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 <div class="card float-card" style="padding: 8px 20px 12px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0"><div style="font-weight: 600">Vorgänge diese Woche</div><span class="chip new">3 aktiv</span></div>
 <div class="row"><span>Wasserhahn tropft, WE 3</span><span class="chip wip">In Arbeit</span></div>
@@ -35,7 +35,7 @@ import wohnanlageGlas from '../assets/wohnanlage-glasbalkone.webp';
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div class="eyebrow">Für Vermieter</div>
 <h2>Mietverwaltung für Vermieter in Bamberg und Umgebung.</h2>
-<Image class="photo" src={wohnanlageGlas} alt="Moderne Wohnanlage mit Glasbalkonen" loading="lazy" style="height: 340px; margin-top: 16px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={wohnanlageGlas} alt="Moderne Wohnanlage mit Glasbalkonen" loading="lazy" style="height: 340px; margin-top: 16px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 </div>
 <div style="display: flex; flex-direction: column; gap: 20px">
 <p class="muted" style="font-size: 17px; line-height: 1.75; max-width: 68ch">Wir kümmern uns um alles, was zwischen Ihnen und Ihren Mietern anfällt: Mieteingänge, Abrechnungen, Reparaturen, Mieterwechsel und die laufende Kommunikation. Wir verwalten Mehrfamilienhäuser und Wohnungsbestände. Einzelne Eigentumswohnungen betreuen wir als Sondereigentumsverwaltung, wenn wir auch die WEG-Verwaltung des Objekts übernehmen.</p>

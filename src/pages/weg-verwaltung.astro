@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import altbau from '../assets/altbau-fassade.webp';
 import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
@@ -17,7 +17,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 <a class="btn btn-g" href="#wechsel">So läuft der Wechsel</a>
 </div>
 </div>
-<Image class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="eager" fetchpriority="high" style="height: 520px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="eager" fetchpriority="high" style="height: 520px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 </div>
 <div class="wrap" style="margin-top: 56px">
 <div class="grid4" style="border-top: 1px solid #E3E7EE; padding-top: 32px; padding-bottom: 8px">
@@ -31,7 +31,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div class="eyebrow">Was wir für Sie übernehmen</div>
 <h2>Was wir als WEG-Verwalter für Ihre Gemeinschaft übernehmen.</h2>
-<Image class="photo" src={altbau} alt="Sanierte und unsanierte Altbaufassade im Vergleich" loading="lazy" style="height: 340px; margin-top: 16px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={altbau} alt="Sanierte und unsanierte Altbaufassade im Vergleich" loading="lazy" style="height: 340px; margin-top: 16px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 
 </div>
 <div style="display: flex; flex-direction: column; gap: 20px">
@@ -76,7 +76,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 
 <section id="wechsel" class="sec">
 <div class="wrap">
-<div class="head" style="max-width: 760px">
+<div class="head">
 <div class="eyebrow">Verwalterwechsel</div>
 <h2>WEG-Verwalter wechseln in vier Schritten.</h2>
 <p class="muted" style="font-size: 18px; line-height: 1.6">Seit der WEG-Reform 2020 kann Ihre Gemeinschaft den Verwalter jederzeit abberufen. Für die Abberufung genügt ein Mehrheitsbeschluss, ein wichtiger Grund ist nicht mehr nötig. Der Vertrag mit dem bisherigen Verwalter endet spätestens sechs Monate danach.</p>

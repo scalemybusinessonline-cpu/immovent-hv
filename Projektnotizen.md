@@ -9,21 +9,27 @@ Statische Astro-Site (Astro 7). Aktueller Design-Stand: `~/Downloads/Immovent We
 
 ## Status
 - [x] 6 Seiten: `/`, `/leistungen`, `/weg-verwaltung`, `/mietverwaltung`, `/ueber-uns`, `/kontakt`
-- [x] V3-Design übernommen (28.10.): neue Styles, Texte, Städte-Laufband, Landingpage `/angebot` (4-Schritt-Funnel, nicht in Navigation verlinkt)
-- [ ] Datenschutz (V3-Text): Hosting nennt noch Wix → markiert, an echten Hoster anpassen; Abschnitte GA, Google Ads/GTM, Meta Pixel, Maps, Cookie-Consent beschreiben Tools, die die Site nicht einbindet → mit Kunde klären
+- [x] V3-Design übernommen (28.10.): neue Styles, Texte, Städte-Laufband, Landingpage `/angebot` (Funnel, nicht in Navigation verlinkt; seit 31.10. 5 Schritte, Weiterleitung auf `/danke-seite`)
+- [ ] Datenschutz (V3-Text): Wix-Bezug entfernt (31.10.), Hoster (Name, Anschrift, AV-Vertrag) + Logfile-Dauer fehlen noch; Google Sheets (Formulardaten) + gclid/UTM ergänzen; Abschnitte GA, Google Ads/GTM, Meta Pixel, Maps, Cookie-Consent beschreiben Tools, die die Site nicht einbindet → mit Kunde klären
 - [x] Cookie-Banner + Consent Mode v2 (Basic, eigenes Banner, GTM `GTM-N2XXWC92` lädt erst nach Einwilligung), im Browser mit Netzwerk-Mitschnitt geprüft (28.10.)
-- [ ] GTM-Container ist leer (Version 1, keine Tags): GA4/Ads/Meta anlegen, Meta-Tag an `ad_storage` koppeln, danach erneut im Browser prüfen
+- [ ] GTM: nach „Alle akzeptieren“ geht seit 29.10. `ad.doubleclick.net/ccm` raus → Container prüfen, welcher Tag; Meta-Tag an `ad_storage` koppeln, danach erneut im Browser prüfen
+- [x] Consent Mode: `personalization_storage` default granted; Update setzt functionality/personalization/security granted (29.10.)
 - [ ] `/angebot`: indexieren oder `noindex` (Ads-Landingpage)?
 - [x] Fonts self-hosted (Belleza, Geist, Geist Mono – Latin), Logos → WebP via astro:assets
 - [x] CSS inline, kein JS außer Tabs auf `/weg-verwaltung`; FAQ = native `<details>`
-- [ ] Formular-Backend (aktuell `method="post"` ohne `action`)
+- [x] Formular-Backend: Kontaktformular + Funnel → Google Sheet „Lead Liste - Immovent-hv“ via Apps-Script-Web-App (`apps-script/Code.gs`, URL in `site.ts`), neueste Anfrage oben in Zeile 2, Form ID fortlaufend, Spalte P = Seiten-URL; live getestet 30.10.
+- [ ] Spam-Schutz für das Formular (Honeypot), Endpoint ist öffentlich
 - [x] Impressum + Datenschutz angelegt
 - [ ] Platzhalter füllen: Teamfotos, Leon Rauh Funktion, Team-Kurztexte, FAQ-Mindestgrößen (WEG + Miet)
 - [x] Kennzahl vereinheitlicht: 150+ betreute Einheiten (Entscheidung Matthew, 21.10.2026)
-- [ ] Hosting/Deploy, OG-Image, Sitemap
+- [x] Sitemap (`@astrojs/sitemap`, ohne Danke-Seite) + `robots.txt`; SEO-Übersicht als Google Sheet „SEO-Sitemap – Immovent-hv“ (31.10.)
+- [x] Fotos als AVIF mit WebP-Fallback (~50 % kleiner, 31.10.)
+- [ ] Hosting/Deploy (kein Staging, kein Auto-Deploy auf GitHub, geprüft 30.10.), OG-Image
+- [ ] Optional: zu lange Titel (WEG 67, Miet 62 Zeichen) und Beschreibungen (Leistungen 169, Über uns 171) kürzen; 320px-Overflow
 
 ## Dateien
-- `src/pages/*` – Seiten · `src/components/*` – Nav, Footer, ContactForm
+- `src/pages/*` – Seiten · `src/components/*` – Nav, Footer, ContactForm, ConsentMode, CookieBanner
+- `src/scripts/lead.ts` – Formularversand + Herkunft (gclid/UTM) · `apps-script/Code.gs` – Web-App der Lead-Liste (manuell in Apps Script einfügen + neue Version bereitstellen)
 - `src/styles/global.css` – Design-Tokens & alle Styles · `src/data/site.ts` – Kontaktdaten & Navigation
 
 ## Repo

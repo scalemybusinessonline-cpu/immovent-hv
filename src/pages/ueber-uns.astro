@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 ---
@@ -8,14 +8,14 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 <section style="padding: 88px 0 64px">
 <div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
 <div class="eyebrow">Über uns</div>
-<h1 style="max-width: 900px">Hausverwaltung, wie wir sie selbst gerne hätten.</h1>
-<p class="lead" style="max-width: 720px">Wir haben Immovent gegründet, weil wir Hausverwaltung besser machen wollen als viele auf dem Markt. Wir kennen beide Seiten, als Mieter und als Eigentümer: niemanden zu erreichen, keine Rückmeldung zu bekommen, Beschlüsse, die nie umgesetzt werden. Genau das machen wir anders.</p>
+<h1 style="font-size: clamp(40px, 4.4vw, 52px)">Hausverwaltung, wie wir sie selbst gerne hätten.</h1>
+<p class="lead">Wir haben Immovent gegründet, weil wir Hausverwaltung besser machen wollen als viele auf dem Markt. Wir kennen beide Seiten, als Mieter und als Eigentümer: niemanden zu erreichen, keine Rückmeldung zu bekommen, Beschlüsse, die nie umgesetzt werden. Genau das machen wir anders.</p>
 </div>
 </section>
 
 <section style="padding: 0 0 112px">
 <div class="wrap">
-<Image class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="eager" fetchpriority="high" style="height: 480px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="eager" fetchpriority="high" style="height: 480px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 </div>
 </section>
 

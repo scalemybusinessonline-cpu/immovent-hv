@@ -55,11 +55,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   ) : <Footer />}
   <CookieBanner />
   <script>
-    // Noch kein Formular-Backend: nach der Browser-Validierung direkt zur Danke-Seite
+    import { trackLanding, sendLead } from '../scripts/lead';
+    trackLanding();
+    // Kontaktformular: in die Lead-Liste schreiben, dann zur Danke-Seite
     document.querySelectorAll<HTMLFormElement>('form[action="/danke-seite"]').forEach((f) =>
       f.addEventListener('submit', (e) => {
         e.preventDefault();
-        location.href = f.getAttribute('action')!;
+        const btn = f.querySelector<HTMLButtonElement>('[type="submit"]')!;
+        btn.disabled = true;
+        sendLead(f)
+          .then(() => (location.href = f.getAttribute('action')!))
+          .catch(() => {
+            btn.disabled = false;
+            btn.insertAdjacentHTML('afterend', '<span class="hint" role="alert">Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder rufen Sie uns an.</span>');
+          });
       })
     );
   </script>

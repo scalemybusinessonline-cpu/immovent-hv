@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
 import mfhBalkone from '../assets/mehrfamilienhaus-balkone.webp';
@@ -25,7 +25,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 </div>
 </div>
 <div class="hero-media">
-<Image class="photo" src={wohnanlageGlas} alt="Moderne Wohnanlage mit Glasbalkonen" loading="eager" fetchpriority="high" style="height: 580px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={wohnanlageGlas} alt="Moderne Wohnanlage mit Glasbalkonen" loading="eager" fetchpriority="high" style="height: 580px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 <div class="card float-card" style="overflow: hidden">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid #EEF1F5">
 <div><div style="font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #4F5B6B">Kundenportal · Beispielansicht</div><div style="font-weight: 600; font-size: 16px; margin-top: 2px">Musterstraße 12, Bamberg</div></div>
@@ -62,7 +62,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 </div>
 <div class="grid2">
 <a class="card" href="/weg-verwaltung" style="overflow: hidden; display: flex; flex-direction: column">
-<Image src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 <div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; flex: 1">
 <div class="eyebrow">Für Eigentümergemeinschaften</div>
 <div class="h3l">WEG-Verwaltung</div>
@@ -72,7 +72,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 </div>
 </a>
 <a class="card" href="/mietverwaltung" style="overflow: hidden; display: flex; flex-direction: column">
-<Image src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="display: block; width: 100%; height: 240px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 <div style="padding: 36px; display: flex; flex-direction: column; gap: 20px; flex: 1">
 <div class="eyebrow">Für Vermieter und Investoren</div>
 <div class="h3l">Mietverwaltung</div>
@@ -122,7 +122,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 <div style="display: flex; flex-direction: column; gap: 16px">
 <div class="eyebrow">FAQ</div>
 <h2>Häufige Fragen zur Hausverwaltung in Bamberg.</h2>
-<p class="muted" style="font-size: 18px; line-height: 1.6">Ihre Frage ist nicht dabei? Rufen Sie uns an unter <a href="tel:+4915174530871">0151 74530871</a>.</p>
+<p class="muted" style="font-size: 18px; line-height: 1.6">Ihre Frage ist nicht dabei?<br>Rufen Sie uns an unter <a href="tel:+4915174530871">0151 74530871</a>.</p>
 </div>
 <div class="faqs">
 <details class="faq" name="faq" open><summary>Wie läuft ein Verwalterwechsel bei einer WEG ab?<span class="pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3v10M3 8h10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></summary><p class="ans">Die Eigentümer beschließen in einer Versammlung die Bestellung von Immovent. Seit der WEG-Reform kann der bisherige Verwalter jederzeit abberufen werden; sein Vertrag endet spätestens sechs Monate danach. Vorbereitung des Beschlusses und Übergabe organisieren wir.</p></details>
@@ -143,7 +143,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 <a href="tel:+4915174530871" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: #16202E; font-weight: 600"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a1 1 0 01-1 1A16 16 0 014 5a1 1 0 011-1z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>0151 74530871</a>
 <a href="mailto:info@immovent-hv.de" style="display: flex; gap: 14px; align-items: center; text-decoration: none; color: #16202E; font-weight: 600"><span class="ic-box"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5A1.5 1.5 0 014.5 5h15A1.5 1.5 0 0121 6.5v11a1.5 1.5 0 01-1.5 1.5h-15A1.5 1.5 0 013 17.5zM3.5 6.5l8.5 6.5 8.5-6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>info@immovent-hv.de</a>
 </div>
-<Image class="photo" src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="height: 320px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} class="photo" src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="height: 320px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 </div>
 <div class="card" style="padding: 40px">
 <h3 style="font-size: 24px; margin-bottom: 28px">Erstgespräch anfragen</h3>

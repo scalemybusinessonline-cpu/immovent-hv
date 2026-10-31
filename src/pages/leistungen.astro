@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import mfhBalkone from '../assets/mehrfamilienhaus-balkone.webp';
 import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
@@ -7,17 +7,17 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 <Base title="Leistungen: WEG- & Mietverwaltung in Bamberg | Immovent" description="Unsere Leistungen für Eigentümer in Bamberg: WEG-Verwaltung für Eigentümergemeinschaften und Mietverwaltung für Vermieter – persönlich, professionell, lösungsorientiert.">
 
 <section style="padding: 88px 0 64px">
-<div class="wrap" style="display: flex; flex-direction: column; gap: 24px; max-width: 920px; margin-left: auto; margin-right: auto">
+<div class="wrap" style="display: flex; flex-direction: column; gap: 24px">
 <div class="eyebrow">Leistungen</div>
-<h1>Moderne Hausverwaltung in Bamberg und Umgebung.</h1>
-<p class="lead" style="max-width: 680px">Wir übernehmen die Verwaltung Ihrer Eigentümergemeinschaft, Ihres Mehrfamilienhauses oder Ihrer Anlageimmobilie vollständig. Von der Abrechnung bis zur Handwerkerkoordination behalten Sie den Überblick.</p>
+<h1 style="font-size: clamp(40px, 4.4vw, 52px)">Moderne Hausverwaltung in Bamberg und Umgebung.</h1>
+<p class="lead">Wir übernehmen die Verwaltung Ihrer Eigentümergemeinschaft, Ihres Mehrfamilienhauses oder Ihrer Anlageimmobilie vollständig. Von der Abrechnung bis zur Handwerkerkoordination behalten Sie den Überblick.</p>
 </div>
 </section>
 
 <section style="padding: 0 0 32px">
 <div class="wrap grid2">
 <a class="card" href="/weg-verwaltung" style="overflow: hidden; display: flex; flex-direction: column">
-<Image src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} src={wohnanlageHof} alt="Wohnanlage mit begrüntem Innenhof" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 <div style="padding: 40px; display: flex; flex-direction: column; gap: 18px; flex: 1">
 <div class="eyebrow">Für Eigentümergemeinschaften</div>
 <h2 style="font-size: 36px">WEG-Verwaltung</h2>
@@ -26,7 +26,7 @@ import wohnanlageHof from '../assets/wohnanlage-innenhof.webp';
 </div>
 </a>
 <a class="card" href="/mietverwaltung" style="overflow: hidden; display: flex; flex-direction: column">
-<Image src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
+<Picture formats={['avif', 'webp']} src={mfhBalkone} alt="Mehrfamilienhaus mit Balkonen" loading="lazy" style="display: block; width: 100%; height: 260px; object-fit: cover" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 <div style="padding: 40px; display: flex; flex-direction: column; gap: 18px; flex: 1">
 <div class="eyebrow">Für Vermieter und Investoren</div>
 <h2 style="font-size: 36px">Mietverwaltung</h2>

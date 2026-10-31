@@ -4,6 +4,11 @@
 
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 img{max-width:100%}
+/* <picture> soll das Layout nicht beeinflussen: nur das <img> zählt als Grid-/Flex-Element */
+picture{display:contents}
+picture>source{display:none}
+/* Telefonnummern nie mitten in der Nummer umbrechen */
+a[href^="tel:"]{white-space:nowrap}
 [hidden]{display:none!important}
 
 /* Design V3 („Blau V3 Texte überarbeitet") */
@@ -13,6 +18,8 @@ a{color:#1F4FA3}
 a:hover{color:#193F84}
 h1,h2,h3,p{margin:0}
 h1,h2,.serif{font-family:'Belleza',Georgia,serif;font-weight:400;letter-spacing:-.005em;color:inherit}
+h1,h2{text-wrap:balance}
+p{text-wrap:pretty}
 h1{font-size:clamp(40px,5.2vw,62px);line-height:1.07}
 h2{font-size:clamp(30px,3.6vw,44px);line-height:1.12}
 h3{font-weight:600;font-size:20px;line-height:1.3;letter-spacing:-.01em}
@@ -23,7 +30,7 @@ h3{font-weight:600;font-size:20px;line-height:1.3;letter-spacing:-.01em}
 .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
 .sec{padding:112px 0}
 .sec-alt{background:#EFF5FE}
-.head{display:flex;flex-direction:column;gap:16px;max-width:720px;margin-bottom:56px}
+.head{display:flex;flex-direction:column;gap:16px;margin-bottom:56px}
 .eyebrow{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#1F4FA3}
 .eyebrow::before{content:'';flex:none;width:24px;height:2px;background:#5797F5}
 .eyebrow.w{color:#FFFFFF}
@@ -185,7 +192,6 @@ td{color:#2E3A4B;line-height:1.5}
 .legal strong{color:#16202E;font-weight:600}
 .addr{font-style:normal;font-size:16px;line-height:1.75;color:#16202E}
 .todo{background:#FFF1CC;color:#6B3E00;padding:1px 6px;border-radius:4px;font-weight:600;font-size:.95em}
-.pruef{display:flex;gap:14px;align-items:flex-start;padding:18px 22px;border-radius:12px;background:#FFF8E6;border:1px solid #F3DFA8;font-size:15px;line-height:1.6;color:#5A4210;margin-bottom:8px}
 
 /* FAQ als native <details> statt Button-State */
 .faq summary{all:unset;box-sizing:border-box;width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;min-height:48px;cursor:pointer;font-size:18px;font-weight:600;line-height:1.4;color:#16202E}
