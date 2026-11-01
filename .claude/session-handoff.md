@@ -1,5 +1,5 @@
 ---
-timestamp: 2026-11-01T21:24:45Z
+timestamp: 2026-11-01T23:05:39Z
 author: Matthew
 ---
 
@@ -41,8 +41,9 @@ author: Matthew
 ## Aktueller Status
 - Dev-Server läuft im Hintergrund (Astro 7 daemonisiert): `astro dev stop` / `astro dev status` / `astro dev logs`
 - Build ok (10 Seiten); Texte 1:1 mit V3 abgeglichen; Funnel, Kontaktformular, Tabs, FAQ, Mobile-Menü per Playwright getestet, keine Konsolenfehler
-- `main` = `origin/main` (`2f9db6b`). Uncommitted (Stand 01.11., Herkunft nicht dokumentiert): Startseiten-Hero-Foto unter 760px quadratisch (`.hero-photo` in `index.astro` + Media-Query in `global.css`), noch nicht auf Mobile geprüft
-- 01.11.: Lead-Mail in `apps-script/Code.gs` ergänzt (`sendMail`, MailApp, HTML-Tabelle der ausgefüllten Felder, Reply-To = Lead-E-Mail, Betreff mit Form-ID + Formular-Typ, Fehler blockieren Sheet-Eintrag nicht). Uncommitted, nicht deployt
+- 01.11.: Push `e1af940` (Lead-Mail in Code.gs + Hero-Foto mobil quadratisch, letzteres nicht auf Mobile geprüft); `main` = `origin/main`
+- 01.11.: DNS: Nameserver Cloudflare, MX Google. `_domainconnect` CNAME → Squarespace ist überflüssig, User darf löschen
+- 01.11.: Lead-Mail in `apps-script/Code.gs` ergänzt (`sendMail`, MailApp, HTML-Tabelle der ausgefüllten Felder, Reply-To = Lead-E-Mail, Betreff mit Form-ID + Formular-Typ, Fehler blockieren Sheet-Eintrag nicht). Gepusht, im Apps-Script-Editor noch nicht bestätigt deployt
 - [x] `EMPFAENGER` = scale.my.business.online@gmail.com; `testMail()` zum Autorisieren/Testen ergänzt, Code in Zwischenablage. 1. Einfügeversuch kaputt (aus Terminal kopiert, lange Zeilen abgeschnitten → Syntax error Z. 13); erneut per `pbcopy`, User soll ⌘A/⌘V im Editor nutzen, Soll = 90 Zeilen. Danach Code als Textdatei in TextEdit geöffnet (Scratchpad `Code-gs.txt`) zum sauberen Kopieren
 - [ ] Code per `pbcopy` in Apps Script, `testMail` einmal im Editor ausführen (MailApp-Berechtigung), neue Version der bestehenden Bereitstellung (URL bleibt), Testformular abschicken
 - Deploy/Staging: ✅ 30.10. geprüft, keiner vorhanden (GitHub: keine Deployments, Webhooks, Commit-Status). User fragte nach Staging-Server → Optionen angeboten: lokal `astro preview` oder Vercel-Projekt (Account offen)
