@@ -1,5 +1,5 @@
 ---
-timestamp: 2026-10-31T10:58:27Z
+timestamp: 2026-11-01T21:24:45Z
 author: Matthew
 ---
 
@@ -35,20 +35,23 @@ author: Matthew
 - 31.10.: Telefon-Links `white-space:nowrap`; FAQ-Hinweis Startseite mit `<br>` auf 2 Zeilen
 - 31.10.: Datenschutz: Wix-Absatz + Prüfbox entfernt (`.pruef`-CSS gelöscht), Abschnitt 2 enthält nur noch Logfiles
 - 31.10.: Push `d266e3c` (Sheet-Anbindung, Funnel, AVIF, Sitemap, Layout, Datenschutz ohne Wix)
-- 31.10. danach (uncommitted): leerer `.todo`-Marker bei „9. Meta Pixel“ + `.todo`-CSS entfernt; alte Wix-SEO-Titel/-Beschreibungen für `/`, `/leistungen`, `/ueber-uns`, `/kontakt` übernommen (User-Wunsch)
+- 31.10. danach (gepusht in `2f9db6b`): leerer `.todo`-Marker bei „9. Meta Pixel“ + `.todo`-CSS entfernt; alte Wix-SEO-Titel/-Beschreibungen für `/`, `/leistungen`, `/ueber-uns`, `/kontakt` übernommen (User-Wunsch)
 - 31.10.: Live-Wix-Seite ausgewertet → Google Sheet „SEO-Sitemap Live-Seite (Wix) – Immovent-hv“ (ID `1DHLDbfqbFgITnCb7CiCfeppzd2H-8eiW2VUA-NTkoGc`), User kopiert es als 2. Reiter in die SEO-Sitemap
 
 ## Aktueller Status
 - Dev-Server läuft im Hintergrund (Astro 7 daemonisiert): `astro dev stop` / `astro dev status` / `astro dev logs`
 - Build ok (10 Seiten); Texte 1:1 mit V3 abgeglichen; Funnel, Kontaktformular, Tabs, FAQ, Mobile-Menü per Playwright getestet, keine Konsolenfehler
-- `main` = `origin/main` (`5b05ef3`), Working Tree: Sheet-Anbindung uncommitted (lead.ts, Code.gs, Base, angebot, site.ts, Handoff)
+- `main` = `origin/main` (`2f9db6b`). Uncommitted (Stand 01.11., Herkunft nicht dokumentiert): Startseiten-Hero-Foto unter 760px quadratisch (`.hero-photo` in `index.astro` + Media-Query in `global.css`), noch nicht auf Mobile geprüft
+- 01.11.: Lead-Mail in `apps-script/Code.gs` ergänzt (`sendMail`, MailApp, HTML-Tabelle der ausgefüllten Felder, Reply-To = Lead-E-Mail, Betreff mit Form-ID + Formular-Typ, Fehler blockieren Sheet-Eintrag nicht). Uncommitted, nicht deployt
+- [x] `EMPFAENGER` = scale.my.business.online@gmail.com; `testMail()` zum Autorisieren/Testen ergänzt, Code in Zwischenablage. 1. Einfügeversuch kaputt (aus Terminal kopiert, lange Zeilen abgeschnitten → Syntax error Z. 13); erneut per `pbcopy`, User soll ⌘A/⌘V im Editor nutzen, Soll = 90 Zeilen. Danach Code als Textdatei in TextEdit geöffnet (Scratchpad `Code-gs.txt`) zum sauberen Kopieren
+- [ ] Code per `pbcopy` in Apps Script, `testMail` einmal im Editor ausführen (MailApp-Berechtigung), neue Version der bestehenden Bereitstellung (URL bleibt), Testformular abschicken
 - Deploy/Staging: ✅ 30.10. geprüft, keiner vorhanden (GitHub: keine Deployments, Webhooks, Commit-Status). User fragte nach Staging-Server → Optionen angeboten: lokal `astro preview` oder Vercel-Projekt (Account offen)
 
 ## Nächste Schritte
 - [x] Script „neueste oben“ (Version 7) live getestet 30.10. 01:05: neueste Zeile 2, Zähler steigt (4, 5), URL in P
 - [ ] Alle Testzeilen im Sheet löschen lassen (User)
 - [x] Push `d266e3c`
-- [x] Todo-Marker + alte SEO-Texte gepusht
+- [x] Todo-Marker + alte SEO-Texte gepusht (`2f9db6b`, 31.10.); main = origin/main, Working Tree bis auf diesen Handoff sauber
 - [ ] **Entscheidung User:** URLs ohne Schrägstrich (`trailingSlash: 'never'`, `build.format: 'file'`), damit identisch mit Wix (Wix leitet `/kontakt/` → `/kontakt` per 301); einzige Weiterleitung dann `/home` → `/` (Wix liefert `/home` mit 200), Ort hängt vom Hosting ab
 - [ ] GSC-Zugriff klären: weitere alte Wix-URLs (z. B. `/copy-of-…`) prüfen
 - [ ] SEO-Sitemap-Sheet Reiter 1: Titel/Beschreibung der 4 Seiten mit alten Texten nachziehen (Datei nicht überschreiben, enthält User-Reiter 2)
