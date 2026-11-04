@@ -4,7 +4,7 @@
 // Die /exec-URL kommt in src/data/site.ts → formEndpoint.
 
 // Empfänger der Lead-Zusammenfassung per E-Mail
-const EMPFAENGER = ['scale.my.business.online@gmail.com'];
+const EMPFAENGER = ['scale.my.business.online@gmail.com', 'l.rauh@immovent-hv.de'];
 
 function doPost(e) {
   const p = e.parameter;
