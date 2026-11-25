@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.immovent-hv.de/sitemap-index.xml
+Sitemap: https://immovent-hv.de/sitemap-index.xml

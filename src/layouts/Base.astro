@@ -11,6 +11,44 @@ import { site } from '../data/site';
 interface Props { title: string; description: string; noindex?: boolean; cta?: string; landing?: boolean }
 const { title, description, noindex, cta, landing } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// Strukturierte Daten: Unternehmen (lokales SEO) + Website, auf jeder Seite gleich
+const home = new URL('/', Astro.site).href;
+const orgId = `${home}#organization`;
+const logoUrl = new URL(logo.src, Astro.site).href;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'RealEstateAgent',
+      '@id': orgId,
+      name: site.name,
+      legalName: site.legalName,
+      url: home,
+      logo: logoUrl,
+      image: logoUrl,
+      telephone: site.phoneHref.replace('tel:', ''),
+      email: site.email,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: site.street,
+        postalCode: site.postalCode,
+        addressLocality: site.locality,
+        addressRegion: 'Bayern',
+        addressCountry: 'DE',
+      },
+      openingHoursSpecification: site.openingHours.map((h) => ({
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: h.days,
+        opens: h.opens,
+        closes: h.closes,
+      })),
+      areaServed: site.areaServed.map((name) => ({ '@type': 'City', name })),
+      knowsAbout: ['WEG-Verwaltung', 'Mietverwaltung', 'Sondereigentumsverwaltung', 'Hausverwaltung'],
+    },
+    { '@type': 'WebSite', '@id': `${home}#website`, url: home, name: site.name, inLanguage: 'de-DE', publisher: { '@id': orgId } },
+  ],
+};
 ---
 <!doctype html>
 <html lang="de">
@@ -28,6 +66,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <meta property="og:description" content={description}>
   <meta property="og:url" content={canonical}>
   <meta name="theme-color" content="#5797F5">
+  <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\\u003c')} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/belleza-latin.woff2" as="font" type="font/woff2" crossorigin>

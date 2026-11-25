@@ -3,8 +3,17 @@ export const site = {
   phone: '0151 74530871',
   phoneHref: 'tel:+4915174530871',
   email: 'info@immovent-hv.de',
+  legalName: 'Immovent Hausverwaltung GmbH',
   street: 'Schützenstr. 21',
   city: '96047 Bamberg',
+  postalCode: '96047',
+  locality: 'Bamberg',
+  // Für strukturierte Daten (LocalBusiness); gleiche Zeiten wie im Header von /angebot
+  openingHours: [
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '15:00' },
+    { days: ['Friday'], opens: '09:00', closes: '13:00' },
+  ],
+  areaServed: ['Bamberg', 'Forchheim', 'Bayreuth', 'Coburg', 'Haßfurt', 'Erlangen', 'Höchstadt', 'Hallstadt'],
   portal: 'https://portal.immovent-hv.de/app/login',
   gtmId: 'GTM-N2XXWC92',
   // /exec-URL der Apps-Script-Web-App (apps-script/Code.gs); leer = Formulare senden nichts
