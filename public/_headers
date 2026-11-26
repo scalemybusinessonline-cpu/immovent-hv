@@ -1,0 +1,11 @@
+# Cloudflare-Header (Pages/Workers Static Assets)
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Selbst gehostete Schriften ändern sich nicht: ein Jahr cachen
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

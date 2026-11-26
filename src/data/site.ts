@@ -13,6 +13,12 @@ export const site = {
     { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '15:00' },
     { days: ['Friday'], opens: '09:00', closes: '13:00' },
   ],
+  // Koordinaten Schützenstr. 21 (OpenStreetMap) für LocalBusiness-geo
+  geo: { latitude: 49.88871, longitude: 10.8957 },
+  // Google-Unternehmensprofil: Profil-Link (Teilen), Bewertungslink, Maps-URL per CID für sameAs/hasMap
+  googleProfile: 'https://share.google/pqA5S1i2O30b6MNCE',
+  googleReview: 'https://g.page/r/CTHQ2dV_dOKdEBM/review',
+  googleMaps: 'https://maps.google.com/?cid=11376783701088784433',
   areaServed: ['Bamberg', 'Forchheim', 'Bayreuth', 'Coburg', 'Haßfurt', 'Erlangen', 'Höchstadt', 'Hallstadt'],
   portal: 'https://portal.immovent-hv.de/app/login',
   gtmId: 'GTM-N2XXWC92',

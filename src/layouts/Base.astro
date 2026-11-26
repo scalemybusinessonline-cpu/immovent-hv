@@ -8,25 +8,31 @@ import CookieBanner from '../components/CookieBanner.astro';
 import logo from '../assets/logo.png';
 import { site } from '../data/site';
 
-interface Props { title: string; description: string; noindex?: boolean; cta?: string; landing?: boolean }
-const { title, description, noindex, cta, landing } = Astro.props;
+// breadcrumb: Name der Seite für BreadcrumbList; service: Service-Schema für Leistungsseiten
+interface Props { title: string; description: string; noindex?: boolean; cta?: string; landing?: boolean; breadcrumb?: string; service?: { name: string; serviceType: string } }
+const { title, description, noindex, cta, landing, breadcrumb, service } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
 // Strukturierte Daten: Unternehmen (lokales SEO) + Website, auf jeder Seite gleich
 const home = new URL('/', Astro.site).href;
 const orgId = `${home}#organization`;
-const logoUrl = new URL(logo.src, Astro.site).href;
+// Feste Logo-URL (public/logo.png), damit sie sich nicht mit jedem Build ändert
+const logoUrl = new URL('/logo.png', Astro.site).href;
+const geo = { '@type': 'GeoCoordinates', ...site.geo };
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
-      '@type': 'RealEstateAgent',
+      '@type': ['LocalBusiness', 'ProfessionalService'],
       '@id': orgId,
       name: site.name,
       legalName: site.legalName,
       url: home,
       logo: logoUrl,
       image: logoUrl,
+      geo,
+      hasMap: site.googleMaps,
+      sameAs: [site.googleMaps],
       telephone: site.phoneHref.replace('tel:', ''),
       email: site.email,
       address: {
@@ -47,6 +53,22 @@ const schema = {
       knowsAbout: ['WEG-Verwaltung', 'Mietverwaltung', 'Sondereigentumsverwaltung', 'Hausverwaltung'],
     },
     { '@type': 'WebSite', '@id': `${home}#website`, url: home, name: site.name, inLanguage: 'de-DE', publisher: { '@id': orgId } },
+    ...(breadcrumb ? [{
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Startseite', item: home },
+        { '@type': 'ListItem', position: 2, name: breadcrumb, item: canonical.href },
+      ],
+    }] : []),
+    ...(service ? [{
+      '@type': 'Service',
+      '@id': `${canonical.href}#service`,
+      name: service.name,
+      serviceType: service.serviceType,
+      url: canonical.href,
+      provider: { '@id': orgId },
+      areaServed: site.areaServed.map((name) => ({ '@type': 'City', name })),
+    }] : []),
   ],
 };
 ---

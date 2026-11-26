@@ -208,6 +208,7 @@ td{color:#2E3A4B;line-height:1.5}
 .cb-link{all:unset;cursor:pointer}
 .cb-link:hover{text-decoration:underline;text-underline-offset:3px}
 .cb-link:focus-visible{outline:2px solid #FFFFFF;outline-offset:3px}
-@media (max-width:640px){.cb{padding:8px}.cb-in{padding:20px}.cb-btns .btn{flex:1 1 100%}}
+/* Mobil: kompakter Banner, Ablehnen/Akzeptieren gleichwertig nebeneinander, Einstellungen als Textzeile */
+@media (max-width:640px){.cb{padding:8px}.cb-in{padding:16px;gap:12px}#cb-title{font-size:18px!important}#cb-text{font-size:13px;line-height:1.45}.cb-btns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.cb-btns .btn{min-height:44px;padding:0 12px;font-size:14px}.cb-btns [data-cb=save]{grid-column:1/-1}.cb-btns [data-cb=settings]{grid-column:1/-1;order:2;min-height:32px;border-color:transparent;text-decoration:underline;text-underline-offset:3px}}
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

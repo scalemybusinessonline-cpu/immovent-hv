@@ -10,7 +10,7 @@ import { site } from '../data/site';
       <div class="fcols">
         <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Leistungen</div><a href="/weg-verwaltung">WEG-Verwaltung</a><a href="/mietverwaltung">Mietverwaltung</a><a href="/leistungen">Alle Leistungen</a></div>
         <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Unternehmen</div><a href="/ueber-uns">Über uns</a><a href="/kontakt">Kontakt</a><a href={site.portal}>Kundenportal</a></div>
-        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Kontakt</div><a href={site.phoneHref}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a><span>{site.street}<br>{site.city}</span></div>
+        <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0"><div class="fh">Kontakt</div><a href={site.phoneHref}>{site.phone}</a><a href={`mailto:${site.email}`}>{site.email}</a><span>{site.street}<br>{site.city}</span><a href={site.googleProfile} target="_blank" rel="noopener">Google-Bewertungen</a></div>
       </div>
     </div>
     <div style="display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.45); padding-top: 24px; font-size: 14px">

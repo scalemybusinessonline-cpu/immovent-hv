@@ -3,8 +3,9 @@ import { Picture } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
 import altbau from '../assets/altbau-fassade.webp';
+import { site } from '../data/site';
 ---
-<Base title="Kontakt & Erstgespräch | Immovent Hausverwaltung Bamberg" description="Neue Hausverwaltung gesucht? Immovent übernimmt WEG- und Mietverwaltung in Bamberg und Umgebung – persönlich und lösungsorientiert. Jetzt anfragen!" cta="#formular">
+<Base breadcrumb="Kontakt" title="Kontakt & Erstgespräch | Immovent Hausverwaltung Bamberg" description="Neue Hausverwaltung gesucht? Immovent übernimmt WEG- und Mietverwaltung in Bamberg und Umgebung – persönlich und lösungsorientiert. Jetzt anfragen!" cta="#formular">
 
 <section style="padding: 88px 0 112px">
 <div class="wrap">
@@ -26,6 +27,10 @@ import altbau from '../assets/altbau-fassade.webp';
 <div class="row" style="border-bottom-color: #E3E7EE"><span class="muted">Freitag</span><span style="font-weight: 600">09:00 – 13:00</span></div>
 <div class="row" style="border-bottom-color: #E3E7EE"><span class="muted">Termine außerhalb</span><span style="font-weight: 600">nach Vereinbarung</span></div>
 <div class="row"><span class="muted">Notfälle</span><span style="font-weight: 600; text-align: right">Notfallnummer des Fachbetriebs für Ihr Objekt</span></div>
+</div>
+<div class="card" style="padding: 24px 28px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Immovent bei Google</h3><p class="muted small">Route zum Büro planen oder Ihre Erfahrung mit uns teilen.</p></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><a class="btn btn-g" href={site.googleProfile} target="_blank" rel="noopener" style="flex: 1 1 180px">Route planen</a><a class="btn btn-p" href={site.googleReview} target="_blank" rel="noopener" style="flex: 1 1 180px">Bewertung schreiben</a></div>
 </div>
 <Picture formats={['avif', 'webp']} class="photo" src={altbau} alt="Altbaufassaden in der Stadt" loading="lazy" style="height: 280px" widths={[700, 1380]} sizes="(max-width: 900px) 100vw, 600px" />
 </div>
